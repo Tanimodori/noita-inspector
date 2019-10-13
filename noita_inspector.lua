@@ -37,6 +37,30 @@ if (arg[2] ~= nil) then
     gun_actions = arg[2]
 end
 
+-- math.max hax
+
+math.max = function (x,...)
+    if (type(x) == "table") then
+        x = x.value
+    end
+    for i, v in ipairs{...} do 
+        if (v == nil) then
+            return x
+        end
+        if (type(v) == "table") then
+            if (v.source ~= nil) then
+                v = v.source.value
+            else
+                v = v.value
+            end
+        end
+        if (v>x) then
+            x=v
+        end 
+    end  
+    return x 
+end
+
 
 
 -- get actions & 'ConfigGunActionInfo_Init' & ConfigGunShotEffects_Init
@@ -98,88 +122,140 @@ reflection_metatable_for_table = {
         return table.source[key]
     end,
     __newindex = function(table, key, value)
-        table[key].assign = value
+        if( type(value) == "table") then
+            -- expression
+            table[key].assign = value.value
+        else
+            -- raw value
+            table[key].assign = value
+        end
         table[key].modified = true
     end
 }
 reflection_metatable_for_keys = {
+    __tostring = function(this)
+        return this.value
+    end,
     __add = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.add = that
-        return this.init_value + that
+        if(this.add == nil) then
+            this.add = 0
+        end
+        this.add = this.add + that
+        this.value = this.value + that
+        return this
     end,
     __sub = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.sub = that
-        return this.init_value - that
+        if(this.sub == nil) then
+            this.sub = 0
+        end
+        this.sub = this.sub + that
+        this.value = this.value - that
+        return this
     end,
     __mul = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.mul = that
-        return this.init_value * that
+        if(this.mul == nil) then
+            this.mul = 1
+        end
+        this.mul = this.mul * that
+        this.value = this.value * that
+        return this
     end,
     __div = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.div = that
-        return this.init_value / that
+        if(this.div == nil) then
+            this.div = 1
+        end
+        this.div = this.div * that
+        this.value = this.value / that
+        return this
     end,
     __concat = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.concat = that
-        return this.init_value .. that
+        if(this.concat == nil) then
+            this.concat = ""
+        end
+        this.concat = this.concat .. that
+        this.value = this.value .. that
+        return this
     end
 }
 reflection_metatable_for_varible = {
+    __tostring = function(this)
+        return this.source.value
+    end,
     __add = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.source.add = that
-        return this.source.init_value + that
+        if(this.source.add == nil) then
+            this.source.add = 0
+        end
+        this.source.add = this.source.add + that
+        this.source.value = this.source.value + that
+        return this
     end,
     __sub = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.source.sub = that
-        return this.source.init_value - that
+        if(this.source.sub == nil) then
+            this.source.sub = 0
+        end
+        this.source.sub = this.source.sub + that
+        this.source.value = this.source.value - that
+        return this
     end,
     __mul = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.source.mul = that
-        return this.source.init_value * that
+        if(this.source.mul == nil) then
+            this.source.mul = 1
+        end
+        this.source.mul = this.source.mul * that
+        this.source.value = this.source.value * that
+        return this
     end,
     __div = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.source.div = that
-        return this.source.init_value / that
+        if(this.source.div == nil) then
+            this.source.div = 1
+        end
+        this.source.div = this.source.div * that
+        this.source.value = this.source.value / that
+        return this
     end,
     __concat = function(this, that)
         if type(that) == "table" then
             this, that = that, this
         end
-        this.source.concat = that
-        return this.source.init_value .. that
+        if(this.source.concat == nil) then
+            this.source.concat = ""
+        end
+        this.source.concat = this.source.concat .. that
+        this.source.value = this.source.value .. that
+        return this
     end
 }
 
 local function set_reflection_metatable_for_table(table)
     for k,v in pairs(table.source) do
-        table.source[k] = setmetatable({ name = k, modified = false, init_value = v}, reflection_metatable_for_keys)
+        table.source[k] = setmetatable({ name = k, modified = false, init_value = v, value = v}, reflection_metatable_for_keys)
     end
     setmetatable(table, reflection_metatable_for_table)
 end
@@ -191,12 +267,16 @@ end
 
 -- check for updates
 local function check_update_for_varible(varible, source)
-    if type(varible) ~= "table" then
+    if type(varible) == "table" then
+        -- expression
+        varible.source.modified = (varible.source.value ~= varible.source.init_value)
+        return varible
+    else
+        -- value
         source.modified = true
         source.assign = varible
         return setmetatable({source = source}, reflection_metatable_for_varible)
     end
-    return varible
 end
 
 -- init a simulation environments
@@ -213,7 +293,7 @@ local function init_simulation()
     shot_effects = {source = _shot_effects}
 
     -- varibles
-    _current_reload_time = {name = "current_reload_time", modified = false, init_value = 0}
+    _current_reload_time = {name = "current_reload_time", modified = false, init_value = 0, value = 0}
     current_reload_time = {source = _current_reload_time}
 
     -- args
@@ -261,7 +341,7 @@ for i,v in ipairs(actions) do
 
     print(string.format("[%d/%d] action %s dumped.", i, #actions, v.id))
 end
-file:write("]")
+file:write("\n]")
 file:close()
 
 print("Dump competed.")
