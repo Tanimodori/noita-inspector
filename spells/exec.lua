@@ -36,8 +36,9 @@ local function get_reflection(env, action)
     action.action = nil
 end
 
+local xmlextender = require("spells/xmlextender")
 
-function exec_action(env, index)
+function exec_action(path_to_data, env, index)
     -- reset env init values
     reset_table_values(env.c)
     reset_table_values(env.shot_effects)
@@ -51,7 +52,9 @@ function exec_action(env, index)
     local action = env.exec_action(index)
     -- restore metatable & check for varible updates
     env.current_reload_time = check_update_for_varible(env.current_reload_time,env._current_reload_time)
-    -- get_reflection & save them
+    -- get reflection of _ENV
     get_reflection(env, action)
+    -- extend the xml
+    xmlextender.extend(path_to_data, action)
     return action
 end

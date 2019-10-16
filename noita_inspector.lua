@@ -76,10 +76,10 @@ local function main()
             translator_instance = translator:new(args.path, args.locale)
             context.translator = translator_instance
         end
-        spells.simulate_action(env, wikitextformatter:new(file, columns, context))
+        spells.simulate_action(args.path, env, wikitextformatter:new(file, columns, context))
     else
         local jsonformatter = require ("spells/formatters/jsonformatter")
-        spells.simulate_action(env, jsonformatter:new(file))
+        spells.simulate_action(args.path, env, jsonformatter:new(file))
     end
 
     -- close file

@@ -1,3 +1,5 @@
+local utils = require("spells/utils")
+
 wikitextformatter = {}
 
 function wikitextformatter:new(file, columns, context)
@@ -34,31 +36,15 @@ local function base_column_generator(title,key)
     return {
         title = title,
         encode = function(action)
-            return tostring(action[key])
+            if action[key] ~= nil then
+                return tostring(action[key])
+            else
+                return "-"
+            end
         end
     }
 end
 
-local function get_property(action, key)
-    if type(key) == "table" then
-        path = ""
-        property = action
-        for i,v in ipairs(key) do
-            if property == nil then
-                return nil
-            end
-            property = property[v]
-            path = path .. "." .. v
-        end
-    else
-        if action == nil then
-            return nil
-        end
-        path = key
-        property = action[key]
-    end
-    return property, path
-end
 
 local function print_property(property)
     print("{")
@@ -70,7 +56,7 @@ end
 
 local pure_verifier_factory = function(func, func_key)
     return function(action, key, context)
-        property, path = get_property(action, key)
+        property, path = utils.get_property(action, key)
         if property == nil then
             return "-"
         else
@@ -223,7 +209,8 @@ wikitextformatter.columns = {
                                   {"reflection","c","spread_degrees"},
                                   " DEG",
                                   {non_negative = true})
-    }
+    },
+    speed = base_column_generator("Speed", "speed"),
 }
 
 wikitextformatter.debug_columns = {
@@ -236,7 +223,7 @@ wikitextformatter.debug_columns = {
     -- damage
     -- radius
     -- spread
-    -- speed
+    wikitextformatter.columns.speed,
     wikitextformatter.columns.fire_rate_wait,
     -- recharge_time
     wikitextformatter.columns.spread_degrees,
@@ -252,7 +239,7 @@ wikitextformatter.default_columns = {
     -- damage
     -- radius
     -- spread
-    -- speed
+    wikitextformatter.columns.speed,
     wikitextformatter.columns.fire_rate_wait,
     -- recharge_time
     wikitextformatter.columns.spread_degrees,
