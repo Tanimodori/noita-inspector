@@ -9,6 +9,7 @@ Usage lua.exe noita_inspector.lua -h
 -- utils
 local json = require ("dkjson")
 local argparse = require ("argparse")
+local jsonformatter = require ("spells/formatter").jsonformatter
 
 local function parse_args()
     local parser = argparse()
@@ -24,21 +25,6 @@ local function parse_args()
     return parser:parse()
 end
 
-local function save_result_closure(file)
-    local function _save_result(file, index, total, action)
-        -- get json from reflection result
-        if (index>1) then
-            file:write(",\n")
-        end
-        local json_string = json.encode(action)
-        file:write(json_string)
-        print(string.format("[%d/%d] action %s dumped.", index, total, action.id))
-    end
-    local function save_result(index, total, action)
-        return _save_result(file, index, total, action)
-    end
-    return save_result
-end
 
 -- main
 local function main()
@@ -51,14 +37,12 @@ local function main()
     
     -- open file
     local file = io.open(args.output, "w")
-    file:write("[\n")
     -- set env & stimulate
     spells = require("spells/spells")
     print(string.format("Dump starting, loading %s.", args.source))
     local env = spells.get_simulation_env(args.path, args.source)
-    spells.simulate_action(env, save_result_closure(file))
+    spells.simulate_action(env, jsonformatter:new(file))
     -- close file
-    file:write("\n]")
     file:close()
     print("Dump competed.")
 end

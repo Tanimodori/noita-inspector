@@ -9,11 +9,17 @@ function spells.get_simulation_env(path_to_data, gun_actions)
     return env
 end
 
-function spells.simulate_action(env, save_result)
+function spells.simulate_action(env, formatter)
     dofile("spells/exec.lua")
+    if formatter.pre_format then
+        formatter:pre_format()
+    end
     for i,v in ipairs(env.actions) do
         action = exec_action(env,i)
-        save_result(i, #env.actions, action)
+        formatter:format(action, i, #env.actions)
+    end
+    if formatter.post_format then
+        formatter:post_format()
     end
 end
 
