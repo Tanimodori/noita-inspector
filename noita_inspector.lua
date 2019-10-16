@@ -8,11 +8,6 @@ Usage lua.exe noita_inspector.lua <path-to-data> [<action_file_basename>]
 -- utils
 local json = require ("dkjson")
 
--- shallow copy
-local function table_clone(org)
-    return {table.unpack(org)}
-end
-
 local function copy_only_modified(reflection_table, field_name, source_table)
     for k,v in pairs(source_table) do
         if (v.modified == true) then
@@ -39,7 +34,7 @@ end
 
 -- math.max hax
 
-local get_true_value = function(...)
+local function get_true_value (...)
     local args = {...}
     for i,v in ipairs(args) do
         if (type(v) == "table") then
@@ -118,7 +113,7 @@ end
 
 
 -- construct metatable
-reflection_metatable_for_table = {
+local reflection_metatable_for_table = {
     __index = function(table, key)
         return table.source[key]
     end,
@@ -133,7 +128,7 @@ reflection_metatable_for_table = {
         table[key].modified = true
     end
 }
-reflection_metatable_for_keys = {
+local reflection_metatable_for_keys = {
     __tostring = function(this)
         return this.value
     end,
@@ -193,7 +188,7 @@ reflection_metatable_for_keys = {
         return this
     end
 }
-reflection_metatable_for_varible = {
+local reflection_metatable_for_varible = {
     __tostring = function(this)
         return this.source.value
     end,
