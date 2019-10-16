@@ -4,7 +4,10 @@ loadfile("spells/reflection.lua",nil,_ENV)()
 local function check_update_for_varible(varible, source)
     if type(varible) == "table" then
         -- expression
-        varible.source.modified = (varible.source.value ~= varible.source.init_value)
+        if (varible.source.value ~= varible.source.init_value) then
+            varible.source.modified = true
+            varible.source.assign = varible.source.value
+        end
         return varible
     else
         -- value

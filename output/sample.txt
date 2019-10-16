@@ -5,11 +5,16 @@
 ! ID
 ! Uses
 ! Mana Drain
+! Damage
+! Radius
+! Spread
+! Speed
+! Cast Delay
+! Recharge time
 ! Spread modifier
 ! Critical chance
 ! Description
 ! Price
-! fire_rate_wait
 |-
 | [[File:Spell burst 2.png]]
 | [[Double Spell]]
@@ -19,9 +24,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Simultaneously cast 2 spells
 | 140
-| -
 |-
 | [[File:Spell burst 3.png]]
 | [[Triple Spell]]
@@ -31,9 +41,14 @@
 | 2
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Simultaneously cast 3 spells
 | 160
-| -
 |-
 | [[File:Spell burst 4.png]]
 | [[Quadruple Spell]]
@@ -43,9 +58,14 @@
 | 5
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Simultaneously cast 4 spells
 | 180
-| -
 |-
 | [[File:Spell scatter 2.png]]
 | [[Double Scatter Spell]]
@@ -53,11 +73,16 @@
 | SCATTER_2
 | &#8734;
 | 0
+| -
+| -
+| -
+| -
+| -
+| -
 | +5.0 DEG
 | -
 | Simultaneously cast 2 spells with low accuracy
 | 100
-| -
 |-
 | [[File:Spell scatter 3.png]]
 | [[Triple Scatter Spell]]
@@ -65,11 +90,16 @@
 | SCATTER_3
 | &#8734;
 | 1
+| -
+| -
+| -
+| -
+| -
+| -
 | +10.0 DEG
 | -
 | Simultaneously cast 3 spells with low accuracy
 | 120
-| -
 |-
 | [[File:Spell scatter 4.png]]
 | [[Quadruple Scatter Spell]]
@@ -77,11 +107,16 @@
 | SCATTER_4
 | &#8734;
 | 2
+| -
+| -
+| -
+| -
+| -
+| -
 | +20.0 DEG
 | -
 | Simultaneously cast 4 spells with low accuracy
 | 140
-| -
 |-
 | [[File:Spell i shape.png]]
 | [[Formation - Behind Your Back]]
@@ -91,9 +126,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Cast 2 spells: one ahead of and one behind the caster
 | 80
-| -
 |-
 | [[File:Spell y shape.png]]
 | [[Formation - Bifurcated]]
@@ -103,9 +143,14 @@
 | 2
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Cast 2 spells in a bifurcated pattern
 | 100
-| -
 |-
 | [[File:Spell t shape.png]]
 | [[Formation - Above And Below]]
@@ -115,9 +160,14 @@
 | 3
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Cast 3 spells - ahead, above and below the caster
 | 120
-| -
 |-
 | [[File:Spell w shape.png]]
 | [[Formation - Trifurcated]]
@@ -127,9 +177,14 @@
 | 3
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Cast 3 spells in a trifurcated pattern
 | 160
-| -
 |-
 | [[File:Spell circle shape.png]]
 | [[Formation - Hexagon]]
@@ -139,9 +194,14 @@
 | 4
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Cast 6 spells in a hexagonal pattern
 | 150
-| -
 |-
 | [[File:Spell pentagram shape.png]]
 | [[Formation - Pentagon]]
@@ -151,9 +211,14 @@
 | 6
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Cast 5 spells in a pentagonal pattern
 | 150
-| -
 |-
 | [[File:Spell spread reduce.png]]
 | [[Reduce Spread]]
@@ -161,11 +226,16 @@
 | SPREAD_REDUCE
 | &#8734;
 | 1
+| -
+| -
+| -
+| -
+| -
+| -
 | -30.0 DEG
 | -
 | Reduces spread of the projectile
 | 100
-| -
 |-
 | [[File:Spell recharge.png]]
 | [[Reduce Recharge Time]]
@@ -175,9 +245,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -0.17s
+| -0.33s
+| -
+| -
 | Reduces the time between spellcasts
 | 200
-| =0s
 |-
 | [[File:Spell gravity.png]]
 | [[Gravity]]
@@ -187,9 +262,14 @@
 | 1
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Increases the force of gravity on the projectile
 | 50
-| -
 |-
 | [[File:Spell gravity anti.png]]
 | [[Anti-Gravity]]
@@ -199,9 +279,14 @@
 | 1
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Applies an upwards force to the projectile
 | 50
-| -
 |-
 | [[File:Spell sinewave.png]]
 | [[Slithering Path]]
@@ -211,9 +296,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to slither speedily through the air like a snake
 | 50
-| -
 |-
 | [[File:Spell chaotic arc.png]]
 | [[$Action_chaotic_arc]]
@@ -223,9 +313,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_chaotic_arc
 | 10
-| -
 |-
 | [[File:Spell fly downwards.png]]
 | [[$Action_fly_downwards]]
@@ -235,9 +330,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -0.05s
+| -
+| -
+| -
 | $actiondesc_fly_downwards
 | 30
-| =0s
 |-
 | [[File:Spell fly upwards.png]]
 | [[$Action_fly_upwards]]
@@ -247,9 +347,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -0.05s
+| -
+| -
+| -
 | $actiondesc_fly_upwards
 | 20
-| =0s
 |-
 | [[File:Spell horizontal arc.png]]
 | [[$Action_horizontal_arc]]
@@ -259,9 +364,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -0.07s
+| -
+| -
+| -
 | $actiondesc_horizontal_arc
 | 20
-| =0s
 |-
 | [[File:Spell bounce.png]]
 | [[Bounce]]
@@ -271,9 +381,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes projectiles to bounce on impact
 | 50
-| -
 |-
 | [[File:Spell homing.png]]
 | [[Homing]]
@@ -283,9 +398,14 @@
 | 50
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to fly towards your foes
 | 220
-| -
 |-
 | [[File:Spell homing shooter.png]]
 | [[Boomerang]]
@@ -295,9 +415,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to fly towards you
 | 100
-| -
 |-
 | [[File:Spell damage.png]]
 | [[Damage Plus]]
@@ -307,9 +432,14 @@
 | 5
 | -
 | -
+| -
+| -
+| +0.08s
+| -
+| -
+| -
 | Increases the damage done by the spell
 | 140
-| +5s
 |-
 | [[File:Spell critical hit.png]]
 | [[Critical Plus]]
@@ -318,10 +448,15 @@
 | &#8734;
 | 5
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | +15%
 | Gives projectiles a +15% chance of a critical hit
 | 140
-| -
 |-
 | [[File:Spell area damage.png]]
 | [[$Action_area_damage]]
@@ -331,9 +466,14 @@
 | 30
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_area_damage
 | 140
-| -
 |-
 | [[File:Spell heavy shot.png]]
 | [[Heavy Shot]]
@@ -343,9 +483,14 @@
 | 7
 | -
 | -
+| -
+| -
+| +0.17s
+| -
+| -
+| -
 | Greatly increases the damage done by the spell but reduces speed at which it flies
 | 150
-| +10s
 |-
 | [[File:Spell knockback.png]]
 | [[Knockback]]
@@ -355,9 +500,14 @@
 | 5
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Knocks back foes hit with the projectile
 | 100
-| -
 |-
 | [[File:Spell recoil.png]]
 | [[Recoil]]
@@ -367,9 +517,14 @@
 | 5
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Increases the recoil when casting the spell
 | 100
-| -
 |-
 | [[File:Spell recoil damper.png]]
 | [[Recoil Damper]]
@@ -379,9 +534,14 @@
 | 5
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Reduces the recoil when casting the spell
 | 100
-| -
 |-
 | [[File:Spell speed.png]]
 | [[Speed Up]]
@@ -391,9 +551,14 @@
 | 5
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Increases the speed at which the projectile flies through the air
 | 100
-| -
 |-
 | [[File:Spell explosive projectile.png]]
 | [[Getting Diggy With It]]
@@ -403,9 +568,14 @@
 | 30
 | -
 | -
+| -
+| -
+| +0.67s
+| -
+| -
+| -
 | Causes projectiles to be more destructive to the environment
 | 120
-| +40s
 |-
 | [[File:Spell water to poison.png]]
 | [[Water To Poison]]
@@ -415,9 +585,14 @@
 | 30
 | -
 | -
+| -
+| -
+| +0.17s
+| -
+| -
+| -
 | Any water within range of the projectile turns into poison
 | 80
-| +10s
 |-
 | [[File:Spell blood to acid.png]]
 | [[Blood To Acid]]
@@ -427,9 +602,14 @@
 | 30
 | -
 | -
+| -
+| -
+| +0.17s
+| -
+| -
+| -
 | Any blood within range of the projectile turns into acid
 | 80
-| +10s
 |-
 | [[File:Spell lava to blood.png]]
 | [[Lava To Blood]]
@@ -439,9 +619,14 @@
 | 30
 | -
 | -
+| -
+| -
+| +0.17s
+| -
+| -
+| -
 | Any lava within range of the projectile turns into blood
 | 80
-| +10s
 |-
 | [[File:Spell transmutation.png]]
 | [[$Action_transmutation]]
@@ -451,9 +636,14 @@
 | 80
 | -
 | -
+| -
+| -
+| +0.33s
+| -
+| -
+| -
 | $actiondesc_transmutation
 | 180
-| +20s
 |-
 | [[File:Spell necromancy.png]]
 | [[Necromancy]]
@@ -463,9 +653,14 @@
 | 40
 | -
 | -
+| -
+| -
+| +0.17s
+| -
+| -
+| -
 | Causes the corpses of creatures killed by the projectile to rise to your aid
 | 80
-| +10s
 |-
 | [[File:Spell explosion.png]]
 | [[Explosion of Sulphur]]
@@ -473,11 +668,16 @@
 | EXPLOSION
 | &#8734;
 | 80
+| Explosion: 275.0 <br/>Impact: 0.0
+| Explosion: 15
+| -
+| 0
+| +0.05s
+| -
 | -
 | -
 | A powerful explosion
 | 160
-| +3s
 |-
 | [[File:Spell fire blast.png]]
 | [[Explosion of Brimstone]]
@@ -485,11 +685,16 @@
 | FIRE_BLAST
 | &#8734;
 | 10
+| Explosion: 30.0 <br/>Impact: 0.0
+| Explosion: 30
+| -
+| 0
+| +0.05s
+| -
 | -
 | -
 | A fiery explosion
 | 120
-| +3s
 |-
 | [[File:Spell poison blast.png]]
 | [[Explosion of Poison]]
@@ -497,11 +702,16 @@
 | POISON_BLAST
 | &#8734;
 | 30
+| Explosion: 30.0 <br/>Impact: 0.0
+| Explosion: 9
+| -
+| 0
+| +0.05s
+| -
 | -
 | -
 | An alchemical explosion
 | 140
-| +3s
 |-
 | [[File:Spell alcohol blast.png]]
 | [[Explosion of Spirits]]
@@ -509,11 +719,16 @@
 | ALCOHOL_BLAST
 | &#8734;
 | 30
+| Explosion: 30.0 <br/>Impact: 0.0
+| Explosion: 12
+| -
+| 0
+| +0.05s
+| -
 | -
 | -
 | An inebriating explosion
 | 140
-| +3s
 |-
 | [[File:Spell thunder blast.png]]
 | [[Explosion of Thunder]]
@@ -521,11 +736,16 @@
 | THUNDER_BLAST
 | &#8734;
 | 110
+| Explosion: 180.0 <br/>Impact: 0.0
+| Explosion: 28
+| -
+| 0
+| +0.25s
+| -
 | -
 | -
 | An electric explosion
 | 180
-| +15s
 |-
 | [[File:Spell berserk field.png]]
 | [[Circle of Fervour]]
@@ -535,9 +755,14 @@
 | 30
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of berserk magic
 | 200
-| +15s
 |-
 | [[File:Spell polymorph field.png]]
 | [[Circle of Transmogrification]]
@@ -547,9 +772,14 @@
 | 50
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of sheep-like magic
 | 200
-| +15s
 |-
 | [[File:Spell chaos polymorph field.png]]
 | [[Circle of Unstable Metamorphosis]]
@@ -559,9 +789,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of transformative magic
 | 200
-| +15s
 |-
 | [[File:Spell electrocution field.png]]
 | [[Circle of Thunder]]
@@ -571,9 +806,14 @@
 | 60
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of electrifying magic
 | 200
-| +15s
 |-
 | [[File:Spell freeze field.png]]
 | [[Circle of Stillness]]
@@ -583,9 +823,14 @@
 | 50
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of freezing magic
 | 200
-| +15s
 |-
 | [[File:Spell regeneration field.png]]
 | [[Circle of Vigour]]
@@ -595,9 +840,14 @@
 | 80
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of regenerative magic
 | 250
-| +15s
 |-
 | [[File:Spell teleportation field.png]]
 | [[Circle of Displacement]]
@@ -607,9 +857,14 @@
 | 30
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of teleportative magic
 | 150
-| +15s
 |-
 | [[File:Spell levitation field.png]]
 | [[Circle of Buoyancy]]
@@ -619,9 +874,14 @@
 | 10
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of levitative magic
 | 120
-| +15s
 |-
 | [[File:Spell shield field.png]]
 | [[Circle of Shielding]]
@@ -631,9 +891,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A field of protective magic
 | 160
-| +15s
 |-
 | [[File:Spell projectile transmutation field.png]]
 | [[$Action_projectile_transmutation_field]]
@@ -643,9 +908,14 @@
 | 120
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | $actiondesc_projectile_transmutation_field
 | 250
-| +15s
 |-
 | [[File:Spell projectile thunder field.png]]
 | [[$Action_projectile_thunder_field]]
@@ -655,9 +925,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | $actiondesc_projectile_thunder_field
 | 300
-| +15s
 |-
 | [[File:Spell projectile gravity field.png]]
 | [[$Action_projectile_gravity_field]]
@@ -667,9 +942,14 @@
 | 120
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | $actiondesc_projectile_gravity_field
 | 250
-| +15s
 |-
 | [[File:Spell sea lava.png]]
 | [[Sea of Lava]]
@@ -679,9 +959,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A large area below the caster is filled with lava
 | 350
-| +15s
 |-
 | [[File:Spell sea alcohol.png]]
 | [[Sea of Alcohol]]
@@ -691,9 +976,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A large area below the caster is filled with tasty alcohol
 | 350
-| +15s
 |-
 | [[File:Spell sea oil.png]]
 | [[Sea of Oil]]
@@ -703,9 +993,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A large area below the caster is filled with oil
 | 350
-| +15s
 |-
 | [[File:Spell sea water.png]]
 | [[Sea of Water]]
@@ -715,9 +1010,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A large area below the caster is filled with water
 | 350
-| +15s
 |-
 | [[File:Spell sea acid.png]]
 | [[Sea of Acid]]
@@ -727,9 +1027,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A large area below the caster is filled with acid
 | 350
-| +15s
 |-
 | [[File:Spell sea acid gas.png]]
 | [[Sea of Flammable Gas]]
@@ -739,9 +1044,14 @@
 | 140
 | -
 | -
+| -
+| -
+| +0.25s
+| -
+| -
+| -
 | A large area below the caster is filled with flammable gas
 | 200
-| +15s
 |-
 | [[File:Spell cloud water.png]]
 | [[Rain Cloud]]
@@ -749,11 +1059,16 @@
 | CLOUD_WATER
 | 10
 | 30
+| 0.0
+| -
+| 0.0 DEG
+| 0
+| +0.25s
+| -
 | -
 | -
 | Creates a watery weather phenomenon
 | 140
-| +15s
 |-
 | [[File:Spell cloud blood.png]]
 | [[Blood Cloud]]
@@ -761,11 +1076,16 @@
 | CLOUD_BLOOD
 | 3
 | 60
+| 0.0
+| -
+| 0.0 DEG
+| 0
+| +0.50s
+| -
 | -
 | -
 | Creates a rain of blood
 | 200
-| +30s
 |-
 | [[File:Spell cloud acid.png]]
 | [[Acid Cloud]]
@@ -773,11 +1093,16 @@
 | CLOUD_ACID
 | 4
 | 120
+| 0.0
+| -
+| 0.0 DEG
+| 0
+| +0.25s
+| -
 | -
 | -
 | Creates an rain of acid
 | 200
-| +15s
 |-
 | [[File:Spell cloud thunder.png]]
 | [[Thundercloud]]
@@ -785,11 +1110,16 @@
 | CLOUD_THUNDER
 | 5
 | 90
+| 0.0
+| -
+| 0.0 DEG
+| 0
+| +0.50s
+| -
 | -
 | -
 | Creates a thundercloud
 | 190
-| +30s
 |-
 | [[File:Spell electric charge.png]]
 | [[Electric Charge]]
@@ -799,9 +1129,14 @@
 | 8
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to release an electric charge on impact
 | 150
-| -
 |-
 | [[File:Spell matter eater.png]]
 | [[Matter Eater]]
@@ -811,9 +1146,14 @@
 | 120
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to destroy the environment as it flies
 | 280
-| -
 |-
 | [[File:Spell freeze.png]]
 | [[Freeze Charge]]
@@ -823,9 +1163,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to release a frozen charge on impact
 | 140
-| -
 |-
 | [[File:Spell burning critical.png]]
 | [[Critical On Burning]]
@@ -835,9 +1180,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Adds 100% critical hit chance to projectiles on burning enemies
 | 70
-| -
 |-
 | [[File:Spell critical water.png]]
 | [[Critical On Wet (Water) Enemies]]
@@ -847,9 +1197,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Adds 100% critical hit chance to projectiles on wet (water) enemies
 | 70
-| -
 |-
 | [[File:Spell critical oil.png]]
 | [[Critical On Oiled Enemies]]
@@ -859,9 +1214,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Adds 100% critical hit chance to projectiles on oiled enemies
 | 70
-| -
 |-
 | [[File:Spell critical blood.png]]
 | [[Critical On Bloody Enemies]]
@@ -871,9 +1231,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Adds 100% critical hit chance to projectiles on bloody enemies
 | 70
-| -
 |-
 | [[File:Spell fireball ray.png]]
 | [[Fireball Thrower]]
@@ -883,9 +1248,14 @@
 | 110
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Causes the projectile to cast fireballs in random directions as it flies
 | 260
-| -
 |-
 | [[File:Spell arc electric.png]]
 | [[Electric Arc]]
@@ -895,9 +1265,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles will have arcs of lightning surging between them
 | 170
-| -
 |-
 | [[File:Spell arc fire.png]]
 | [[Fire Arc]]
@@ -907,9 +1282,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles will have arcs of fire burning between them
 | 160
-| -
 |-
 | [[File:Spell arc gunpowder.png]]
 | [[Gunpowder Arc]]
@@ -919,9 +1299,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles will have arcs of gunpowder flowing between them
 | 160
-| -
 |-
 | [[File:Spell arc poison.png]]
 | [[Poison Arc]]
@@ -931,9 +1316,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles will have arcs of poison flowing between them
 | 160
-| -
 |-
 | [[File:Spell x ray.png]]
 | [[All-Seeing Eye]]
@@ -941,11 +1331,16 @@
 | X_RAY
 | 10
 | 100
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 0
+| 0.0 DEG
+| 0
+| -
+| -
 | -
 | -
 | See into the unexplored. But not everywhere...
 | 230
-| -
 |-
 | [[File:Spell unstable gunpowder.png]]
 | [[Firecrackers]]
@@ -955,9 +1350,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles explode multiple times on impact
 | 140
-| -
 |-
 | [[File:Spell acid trail.png]]
 | [[Acid Trail]]
@@ -967,9 +1367,14 @@
 | 15
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles leave a trail of acid
 | 160
-| -
 |-
 | [[File:Spell poison trail.png]]
 | [[Poison Trail]]
@@ -979,9 +1384,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles leave a trail of poison
 | 160
-| -
 |-
 | [[File:Spell oil trail.png]]
 | [[Oil Trail]]
@@ -991,9 +1401,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles leave a trail of oil
 | 160
-| -
 |-
 | [[File:Spell water trail.png]]
 | [[Water Trail]]
@@ -1003,9 +1418,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles leave a trail of water
 | 160
-| -
 |-
 | [[File:Spell gunpowder trail.png]]
 | [[Gunpowder Trail]]
@@ -1015,9 +1435,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles leave a trail of gunpowder
 | 160
-| -
 |-
 | [[File:Spell fire trail.png]]
 | [[Fire Trail]]
@@ -1027,9 +1452,14 @@
 | 10
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Projectiles leave a trail of fiery particles
 | 130
-| -
 |-
 | [[File:Spell burn trail.png]]
 | [[Burning Trail]]
@@ -1039,9 +1469,14 @@
 | 5
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | A tail of fire follows the projectile
 | 100
-| -
 |-
 | [[File:Spell torch.png]]
 | [[Torch]]
@@ -1051,9 +1486,14 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | Lights your wand right up!
 | 100
-| -
 |-
 | [[File:Spell torch electric.png]]
 | [[Electric Torch]]
@@ -1063,33 +1503,48 @@
 | 0
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | A bright but very dangerous light!
 | 150
-| -
 |-
 | [[File:Spell energy shield.png]]
 | [[Energy Shield]]
 | 7
 | ENERGY_SHIELD
 | &#8734;
-| nil
+| -
+| -
+| -
+| -
+| -
+| -
+| -
 | -
 | -
 | Deflects incoming projectiles
 | 220
-| -
 |-
 | [[File:Spell energy shield sector.png]]
 | [[Energy Shield Sector]]
 | 7
 | ENERGY_SHIELD_SECTOR
 | &#8734;
-| nil
+| -
+| -
+| -
+| -
+| -
+| -
+| -
 | -
 | -
 | Deflects incoming projectiles
 | 160
-| -
 |-
 | [[File:Spell light bullet.png]]
 | [[Spark Bolt]]
@@ -1097,11 +1552,16 @@
 | LIGHT_BULLET
 | &#8734;
 | 5
+| Explosion: 0.0 <br/>Impact: 3.0
+| Explosion: 2
+| 0.0 DEG
+| 750~850
+| +0.05s
+| -
 | -1.0 DEG
 | +5%
 | A weak but enchanting sparkling projectile
 | 100
-| +3s
 |-
 | [[File:Spell air bullet.png]]
 | [[Burst of Air]]
@@ -1109,11 +1569,16 @@
 | AIR_BULLET
 | &#8734;
 | 5
+| Explosion: 0.0 <br/>Impact: 5.75
+| Explosion: 2
+| 0.0 DEG
+| 350~450
+| +0.05s
+| -
 | -1.0 DEG
 | -
 | Brittle flow of air capable of greatly moving things
 | 80
-| +3s
 |-
 | [[File:Spell light bullet trigger.png]]
 | [[Spark Bolt With Trigger]]
@@ -1122,10 +1587,15 @@
 | &#8734;
 | 10
 | -
+| -
+| -
+| -
+| +0.05s
+| -
+| -
 | +5%
 | A spark bolt that casts another spell upon collision
 | 140
-| +3s
 |-
 | [[File:Spell light bullet trigger 2.png]]
 | [[Spark Bolt With Double Trigger]]
@@ -1134,10 +1604,15 @@
 | &#8734;
 | 15
 | -
+| -
+| -
+| -
+| +0.07s
+| -
+| -
 | +5%
 | A spark bolt that casts two new spells upon collision
 | 250
-| +4s
 |-
 | [[File:Spell light bullet timer.png]]
 | [[Spark Bolt With Timer]]
@@ -1146,10 +1621,15 @@
 | &#8734;
 | 10
 | -
+| -
+| -
+| -
+| +0.05s
+| -
+| -
 | +5%
 | A spark bolt that casts another spell after a timer runs out
 | 140
-| +3s
 |-
 | [[File:Spell bullet.png]]
 | [[Magic Arrow]]
@@ -1157,11 +1637,16 @@
 | BULLET
 | &#8734;
 | 20
+| Explosion: 0.0 <br/>Impact: 10.0
+| Explosion: 2
+| 0.6 DEG
+| 600~650
+| +0.07s
+| -
 | +1.0 DEG
 | +5%
 | A handy magical arrow
 | 150
-| +4s
 |-
 | [[File:Spell bullet trigger.png]]
 | [[Magic Arrow With Trigger]]
@@ -1169,11 +1654,16 @@
 | BULLET_TRIGGER
 | &#8734;
 | 35
+| -
+| -
+| -
+| -
+| +0.07s
+| -
 | +1.0 DEG
 | +5%
 | A magical arrow that casts another spell upon collision
 | 190
-| +4s
 |-
 | [[File:Spell bullet timer.png]]
 | [[Magic Arrow With Timer]]
@@ -1181,11 +1671,16 @@
 | BULLET_TIMER
 | &#8734;
 | 35
+| -
+| -
+| -
+| -
+| +0.07s
+| -
 | +1.0 DEG
 | +5%
 | A magical arrow that casts another spell after a timer runs out
 | 190
-| +4s
 |-
 | [[File:Spell heavy bullet.png]]
 | [[Magic Bolt]]
@@ -1193,11 +1688,16 @@
 | HEAVY_BULLET
 | &#8734;
 | 30
+| Explosion: 0.0 <br/>Impact: 12.75
+| Explosion: 6
+| 2.9 DEG
+| 600~750
+| +0.12s
+| -
 | +2.5 DEG
 | +5%
 | A powerful magical projectile
 | 200
-| +7s
 |-
 | [[File:Spell heavy bullet trigger.png]]
 | [[Magic Bolt With Trigger]]
@@ -1205,11 +1705,16 @@
 | HEAVY_BULLET_TRIGGER
 | &#8734;
 | 40
+| -
+| -
+| -
+| -
+| +0.12s
+| -
 | +2.5 DEG
 | +5%
 | A bolt that casts another spell upon collision
 | 240
-| +7s
 |-
 | [[File:Spell heavy bullet timer.png]]
 | [[Magic Bolt With Timer]]
@@ -1217,11 +1722,16 @@
 | HEAVY_BULLET_TIMER
 | &#8734;
 | 40
+| -
+| -
+| -
+| -
+| +0.12s
+| -
 | +2.5 DEG
 | +5%
 | A bolt that casts another spell after a timer runs out
 | 240
-| +7s
 |-
 | [[File:Spell slow bullet.png]]
 | [[Energy Orb]]
@@ -1229,11 +1739,16 @@
 | SLOW_BULLET
 | &#8734;
 | 30
+| Explosion: 18.0 <br/>Impact: 11.25
+| Explosion: 15
+| 1.7 DEG
+| 180~240
+| +0.10s
+| -
 | +1.8 DEG
 | -
 | A slow but powerful orb of energy
 | 160
-| +6s
 |-
 | [[File:Spell slow bullet trigger.png]]
 | [[Energy Orb With A Trigger]]
@@ -1241,11 +1756,16 @@
 | SLOW_BULLET_TRIGGER
 | &#8734;
 | 50
+| -
+| -
+| -
+| -
+| +0.42s
+| -
 | +5 DEG
 | -
 | A slow but powerful orb of energy that casts another spell upon collision
 | 200
-| +25s
 |-
 | [[File:Spell slow bullet timer.png]]
 | [[Energy Orb With A Timer]]
@@ -1253,11 +1773,16 @@
 | SLOW_BULLET_TIMER
 | &#8734;
 | 50
+| -
+| -
+| -
+| -
+| +0.10s
+| -
 | +1.8 DEG
 | -
 | A slow but powerful orb of energy with a timer
 | 200
-| +6s
 |-
 | [[File:Spell black hole.png]]
 | [[Black Hole]]
@@ -1265,11 +1790,16 @@
 | BLACK_HOLE
 | 3
 | 180
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 1
+| 0.0 DEG
+| 40
+| +1.33s
+| -
 | -
 | -
 | A slow orb of void that eats through all obstacles
 | 200
-| +80s
 |-
 | [[File:Spell black hole big.png]]
 | [[Giga Black Hole]]
@@ -1277,11 +1807,16 @@
 | BLACK_HOLE_BIG
 | 6
 | 240
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 1
+| 0.0 DEG
+| 0
+| +1.33s
+| -
 | -
 | -
 | A growing orb of negative energy that destroys everything in its reach
 | 320
-| +80s
 |-
 | [[File:Spell spitter.png]]
 | [[Spitter Bolt]]
@@ -1289,11 +1824,16 @@
 | SPITTER
 | &#8734;
 | 5
+| Explosion: 0.0 <br/>Impact: 7.5
+| Explosion: 2
+| 0.0 DEG
+| 400~600
+| -0.02s
+| -
 | +4.0 DEG
 | -
 | A short-lived magical bolt
 | 110
-| =0s
 |-
 | [[File:Spell spitter timer.png]]
 | [[Spitter Bolt With Timer]]
@@ -1301,11 +1841,16 @@
 | SPITTER_TIMER
 | &#8734;
 | 10
+| -
+| -
+| -
+| -
+| -0.02s
+| -
 | +4.0 DEG
 | -
 | A short-lived magical bolt that casts another spell after a timer runs out
 | 140
-| =0s
 |-
 | [[File:Spell spitter green.png]]
 | [[$Action_spitter_tier_2]]
@@ -1313,11 +1858,16 @@
 | SPITTER_TIER_2
 | &#8734;
 | 25
+| Explosion: 0.0 <br/>Impact: 11.25
+| Explosion: 2
+| 0.0 DEG
+| 600~800
+| -0.03s
+| -
 | +5.0 DEG
 | -
 | $actiondesc_spitter_tier_2
 | 190
-| =0s
 |-
 | [[File:Spell spitter green timer.png]]
 | [[$Action_spitter_tier_2_timer]]
@@ -1325,11 +1875,16 @@
 | SPITTER_TIER_2_TIMER
 | &#8734;
 | 30
+| -
+| -
+| -
+| -
+| -0.03s
+| -
 | +5.0 DEG
 | -
 | $actiondesc_spitter_tier_2_timer
 | 220
-| =0s
 |-
 | [[File:Spell spitter purple.png]]
 | [[$Action_spitter_tier_3]]
@@ -1337,11 +1892,16 @@
 | SPITTER_TIER_3
 | &#8734;
 | 40
+| Explosion: 0.0 <br/>Impact: 13.75
+| Explosion: 2
+| 0.0 DEG
+| 800
+| -0.07s
+| -
 | +6.0 DEG
 | -
 | $actiondesc_spitter_tier_3
 | 240
-| =0s
 |-
 | [[File:Spell spitter purple timer.png]]
 | [[$Action_spitter_tier_3_timer]]
@@ -1349,11 +1909,16 @@
 | SPITTER_TIER_3_TIMER
 | &#8734;
 | 45
+| -
+| -
+| -
+| -
+| -0.07s
+| -
 | +6.0 DEG
 | -
 | $actiondesc_spitter_tier_3_timer
 | 260
-| =0s
 |-
 | [[File:Spell bubbleshot.png]]
 | [[Bubble Spark]]
@@ -1361,11 +1926,16 @@
 | BUBBLESHOT
 | &#8734;
 | 5
+| Explosion: 0.0 <br/>Impact: 5.0
+| Explosion: 4
+| 22.9 DEG
+| 200~300
+| -0.08s
+| -
 | -
 | -
 | A bouncy but inaccurate spell
 | 100
-| =0s
 |-
 | [[File:Spell bubbleshot trigger.png]]
 | [[Bubble Spark With Trigger]]
@@ -1375,9 +1945,14 @@
 | 16
 | -
 | -
+| -
+| -
+| -0.08s
+| -
+| -
+| -
 | A bouncy but inaccurate spell that casts another spell upon collision
 | 120
-| =0s
 |-
 | [[File:Spell disc bullet.png]]
 | [[Summon Disc Projectile]]
@@ -1385,11 +1960,16 @@
 | DISC_BULLET
 | &#8734;
 | 20
+| 0.0
+| -
+| 0.6 DEG
+| 350~450
+| +0.17s
+| -
 | +1.0 DEG
 | -
 | Summons a sharp disc projectile
 | 120
-| +10s
 |-
 | [[File:Spell bouncy orb.png]]
 | [[Energy Sphere]]
@@ -1397,11 +1977,16 @@
 | BOUNCY_ORB
 | &#8734;
 | 20
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 2
+| 0.6 DEG
+| 400~500
+| +0.17s
+| -
 | -
 | -
 | A fast, arcing projectile
 | 120
-| +10s
 |-
 | [[File:Spell bouncy orb timer.png]]
 | [[Energy Sphere With Timer]]
@@ -1411,9 +1996,14 @@
 | 50
 | -
 | -
+| -
+| -
+| +0.17s
+| -
+| -
+| -
 | A fast, arcing projectile with a timer
 | 150
-| +10s
 |-
 | [[File:Spell rubber ball.png]]
 | [[Bouncing Burst]]
@@ -1421,11 +2011,16 @@
 | RUBBER_BALL
 | &#8734;
 | 5
+| 3.0
+| -
+| 0.6 DEG
+| 650~750
+| -0.03s
+| -
 | -0.5 DEG
 | -
 | A very bouncy projectile
 | 60
-| -2s
 |-
 | [[File:Spell arrow.png]]
 | [[Summon Arrow]]
@@ -1433,11 +2028,16 @@
 | ARROW
 | &#8734;
 | 15
+| 0.0
+| -
+| 0.6 DEG
+| 550~650
+| +0.17s
+| -
 | -10 DEG
 | -
 | Summons an arrow
 | 140
-| +10s
 |-
 | [[File:Spell lance.png]]
 | [[Glowing Lance]]
@@ -1445,11 +2045,16 @@
 | LANCE
 | &#8734;
 | 30
+| Explosion: 0.0 <br/>Impact: 35.0
+| Explosion: 1
+| 0.2 DEG
+| 300~400
+| +0.33s
+| -
 | -10 DEG
 | -
 | A magical lance that cuts through soft materials
 | 180
-| +20s
 |-
 | [[File:Spell rocket.png]]
 | [[Magic Missile]]
@@ -1457,11 +2062,16 @@
 | ROCKET
 | 10
 | 70
+| Explosion: 420.0 <br/>Impact: 75.0
+| Explosion: 15
+| 0.0 DEG
+| 70
+| +1.00s
+| -
 | -
 | -
 | A fiery, explosive projectile
 | 220
-| +60s
 |-
 | [[File:Spell rocket tier 2.png]]
 | [[Large Magic Missile]]
@@ -1469,11 +2079,16 @@
 | ROCKET_TIER_2
 | 8
 | 90
+| Explosion: 470.0 <br/>Impact: 100.0
+| Explosion: 32
+| 0.0 DEG
+| 70
+| +1.50s
+| -
 | -
 | -
 | A more powerful version of Magic missile
 | 240
-| +90s
 |-
 | [[File:Spell rocket tier 3.png]]
 | [[Giant Magic Missile]]
@@ -1481,11 +2096,16 @@
 | ROCKET_TIER_3
 | 6
 | 120
+| Explosion: 520.0 <br/>Impact: 125.0
+| Explosion: 42
+| 0.0 DEG
+| 70
+| +2.00s
+| -
 | -
 | -
 | The most powerful version of Magic missile
 | 250
-| +120s
 |-
 | [[File:Spell grenade.png]]
 | [[Firebolt]]
@@ -1493,11 +2113,16 @@
 | GRENADE
 | 25
 | 50
+| Explosion: 190.0 <br/>Impact: 45.0
+| Explosion: 7
+| 2.9 DEG
+| 250~280
+| +0.50s
+| -
 | -
 | -
 | A bouncy, explosive bolt
 | 170
-| +30s
 |-
 | [[File:Spell grenade trigger.png]]
 | [[Firebolt With Trigger]]
@@ -1507,9 +2132,14 @@
 | 50
 | -
 | -
+| -
+| -
+| +0.50s
+| -
+| -
+| -
 | A firebolt that that casts another spell upon collision
 | 210
-| +30s
 |-
 | [[File:Spell grenade tier 2.png]]
 | [[Large Firebolt]]
@@ -1517,11 +2147,16 @@
 | GRENADE_TIER_2
 | 20
 | 90
+| Explosion: 240.0 <br/>Impact: 70.0
+| Explosion: 25
+| 2.9 DEG
+| 250~280
+| +0.83s
+| -
 | -
 | -
 | A more powerful version of Firebolt
 | 220
-| +50s
 |-
 | [[File:Spell grenade tier 3.png]]
 | [[Giant Firebolt]]
@@ -1529,11 +2164,16 @@
 | GRENADE_TIER_3
 | 20
 | 90
+| Explosion: 290.0 <br/>Impact: 95.0
+| Explosion: 40
+| 2.9 DEG
+| 250~280
+| +1.33s
+| -
 | -
 | -
 | The most powerful version of Firebolt
 | 220
-| +80s
 |-
 | [[File:Spell grenade anti.png]]
 | [[Odd Firebolt]]
@@ -1541,11 +2181,16 @@
 | GRENADE_ANTI
 | 25
 | 50
+| Explosion: 190.0 <br/>Impact: 45.0
+| Explosion: 7
+| 2.9 DEG
+| 250~280
+| +0.50s
+| -
 | -
 | -
 | A somewhat peculiar bouncy, explosive bolt
 | 170
-| +30s
 |-
 | [[File:Spell grenade large.png]]
 | [[Dropper Bolt]]
@@ -1553,11 +2198,16 @@
 | GRENADE_LARGE
 | 35
 | 80
+| Explosion: 390.0 <br/>Impact: 95.0
+| Explosion: 16
+| 2.9 DEG
+| 50~80
+| +0.67s
+| -
 | -
 | -
 | A very heavy explosive bolt
 | 150
-| +40s
 |-
 | [[File:Spell mine.png]]
 | [[Unstable Crystal]]
@@ -1565,11 +2215,16 @@
 | MINE
 | 15
 | 20
+| Explosion: 400.0 <br/>Impact: 0.0
+| Explosion: 30
+| 2.9 DEG
+| 250~280
+| +0.50s
+| -
 | -
 | -
 | A crystal that explodes when someone comes nearby
 | 200
-| +30s
 |-
 | [[File:Spell mine death trigger.png]]
 | [[Unstable Crystal With Trigger]]
@@ -1579,9 +2234,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.50s
+| -
+| -
+| -
 | A crystal that explodes and casts another spell when someone comes nearby
 | 240
-| +30s
 |-
 | [[File:Spell pipe bomb.png]]
 | [[Dormant Crystal]]
@@ -1589,11 +2249,16 @@
 | PIPE_BOMB
 | 20
 | 20
+| Explosion: 550.0 <br/>Impact: 0.0
+| Explosion: 30
+| 2.9 DEG
+| 250~280
+| +0.50s
+| -
 | -
 | -
 | A crystal that explodes when caught in another explosion
 | 200
-| +30s
 |-
 | [[File:Spell pipe bomb death trigger.png]]
 | [[Dormant Crystal With Trigger]]
@@ -1603,9 +2268,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.50s
+| -
+| -
+| -
 | A crystal that explodes and casts another spell when caught in another explosion
 | 230
-| +30s
 |-
 | [[File:Spell exploding deer.png]]
 | [[Summon Decoy Deer]]
@@ -1613,11 +2283,16 @@
 | EXPLODING_DEER
 | 10
 | 120
+| 0.0
+| -
+| 2.9 DEG
+| 250~280
+| +1.33s
+| -
 | -
 | -
 | Summon a seemingly-innocuous deer
 | 170
-| +80s
 |-
 | [[File:Spell pipe bomb detonator.png]]
 | [[Dormant Crystal Detonation]]
@@ -1627,9 +2302,14 @@
 | 50
 | -
 | -
+| -
+| -
+| +0.08s
+| -
+| -
+| -
 | Causes all nearby dormant crystals to explode
 | 50
-| +5s
 |-
 | [[File:Spell laser.png]]
 | [[Concentrated Light]]
@@ -1637,11 +2317,16 @@
 | LASER
 | &#8734;
 | 30
+| Explosion: 22.0 <br/>Impact: 9.75
+| Explosion: 3
+| 0.0 DEG
+| 130~150
+| -0.37s
+| -
 | -
 | -
 | A pinpointed beam of light
 | 180
-| -22s
 |-
 | [[File:Spell lightning.png]]
 | [[Lightning Bolt]]
@@ -1649,11 +2334,16 @@
 | LIGHTNING
 | &#8734;
 | 70
+| 0.0
+| -
+| -
+| -
+| +0.83s
+| -
 | -
 | -
 | The primordial force of nature
 | 250
-| +50s
 |-
 | [[File:Spell digger.png]]
 | [[Digging Bolt]]
@@ -1661,11 +2351,16 @@
 | DIGGER
 | &#8734;
 | 0
+| Explosion: 0.0 <br/>Impact: 7.5
+| Explosion: 6
+| 0.0 DEG
+| 0
+| +0.02s
+| -0.17s
 | -
 | -
 | Ideal for mining operations
 | 70
-| +1s
 |-
 | [[File:Spell powerdigger.png]]
 | [[Digging Blast]]
@@ -1673,11 +2368,16 @@
 | POWERDIGGER
 | &#8734;
 | 0
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 7
+| 0.0 DEG
+| 0
+| +0.02s
+| -0.17s
 | -
 | -
 | More powerful digging
 | 110
-| +1s
 |-
 | [[File:Spell chainsaw.png]]
 | [[Chainsaw]]
@@ -1685,11 +2385,16 @@
 | CHAINSAW
 | &#8734;
 | 0
+| Explosion: 0.0 <br/>Impact: 12.5
+| Explosion: 3
+| 0.0 DEG
+| 0~400
+| =0.00s
+| -0.17s
 | -
 | -
 | Good for digging meat
 | 80
-| =0s
 |-
 | [[File:Spell tentacle.png]]
 | [[Tentacle]]
@@ -1697,11 +2402,16 @@
 | TENTACLE
 | &#8734;
 | 20
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 0
+| -
+| 8
+| +0.67s
+| -
 | -
 | -
 | Calls a terrifying appendage from another dimension
 | 200
-| +40s
 |-
 | [[File:Spell tentacle timer.png]]
 | [[Tentacle With Timer]]
@@ -1711,9 +2421,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.67s
+| -
+| -
+| -
 | Terror from another dimension! Comes with a timer
 | 250
-| +40s
 |-
 | [[File:Spell heal bullet.png]]
 | [[Heal Projectile]]
@@ -1721,11 +2436,16 @@
 | HEAL_BULLET
 | 20
 | 15
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 2
+| 0.6 DEG
+| 600~650
+| +0.07s
+| -
 | +1.0 DEG
 | -
 | Heals whatever it hits
 | 60
-| +4s
 |-
 | [[File:Spell spiral shot.png]]
 | [[Spiral Shot]]
@@ -1733,11 +2453,16 @@
 | SPIRAL_SHOT
 | 15
 | 50
+| 5.0
+| -
+| 0.0 DEG
+| 100~120
+| +0.33s
+| -
 | -
 | -
 | A mystical whirlwind of magic sparks
 | 190
-| +20s
 |-
 | [[File:Spell fireball.png]]
 | [[Fireball]]
@@ -1745,11 +2470,16 @@
 | FIREBALL
 | 15
 | 70
+| Explosion: 200.0 <br/>Impact: 0.0
+| Explosion: 15
+| -
+| 160~170
+| +0.83s
+| -
 | +2.0 DEG
 | -
 | A powerful exploding spell
 | 220
-| +50s
 |-
 | [[File:Spell meteor.png]]
 | [[Meteor]]
@@ -1757,11 +2487,16 @@
 | METEOR
 | 10
 | 150
+| 0.0
+| Explosion: 45
+| -
+| 300~400
+| -
+| -
 | -
 | -
 | Destructive projectile from the skies!
 | 280
-| -
 |-
 | [[File:Spell flamethrower.png]]
 | [[Flamethrower]]
@@ -1769,11 +2504,16 @@
 | FLAMETHROWER
 | 60
 | 20
+| Explosion: 50.0 <br/>Impact: 0.0
+| Explosion: 8
+| -
+| 160~170
+| -
+| -
 | +2.0 DEG
 | -
 | A stream of fire!!
 | 220
-| -
 |-
 | [[File:Spell slimeball.png]]
 | [[Slimeball]]
@@ -1781,11 +2521,16 @@
 | SLIMEBALL
 | &#8734;
 | 20
+| Explosion: 30.0 <br/>Impact: 6.25
+| Explosion: 9
+| -
+| 90
+| +0.17s
+| -
 | +2.0 DEG
 | -
 | A dripping ball of poisonous slime
 | 130
-| +10s
 |-
 | [[File:Spell darkflame.png]]
 | [[Path of Dark Flame]]
@@ -1793,11 +2538,16 @@
 | DARKFLAME
 | 60
 | 90
+| Explosion: 0.0 <br/>Impact: 20.0
+| Explosion: 1
+| -
+| 250
+| +0.33s
+| -
 | -
 | -
 | A trail of dark deadly flames
 | 180
-| +20s
 |-
 | [[File:Spell pebble.png]]
 | [[Summon Rock Spirit]]
@@ -1805,11 +2555,16 @@
 | PEBBLE
 | 10
 | 120
+| 0.0
+| -
+| 1.1 DEG
+| 220~240
+| +1.33s
+| -
 | -
 | -
 | Summon an autonomous rock ally
 | 200
-| +80s
 |-
 | [[File:Spell dynamite.png]]
 | [[Dynamite]]
@@ -1817,11 +2572,16 @@
 | DYNAMITE
 | 16
 | 50
+| -
+| -
+| -
+| -
+| +0.83s
+| -
 | +6.0 DEG
 | -
 | Summon an explosive
 | 160
-| +50s
 |-
 | [[File:Spell bomb.png]]
 | [[Bomb]]
@@ -1831,9 +2591,14 @@
 | 25
 | -
 | -
+| -
+| -
+| +1.67s
+| -
+| -
+| -
 | Summon a bomb that destroys ground very efficiently
 | 200
-| +100s
 |-
 | [[File:Spell bomb holy.png]]
 | [[Holy Bomb]]
@@ -1843,9 +2608,14 @@
 | 300
 | -
 | -
+| -
+| -
+| +0.67s
+| +1.33s
+| -
+| -
 | Summon a bomb that... well...
 | 400
-| +40s
 |-
 | [[File:Spell crumbling earth.png]]
 | [[Earthquake]]
@@ -1853,11 +2623,16 @@
 | CRUMBLING_EARTH
 | 3
 | 240
+| Explosion: 0.0
+| Explosion: 2
+| 0.0 DEG
+| 110
+| -
+| -
 | -
 | -
 | Call the anger of the earth
 | 300
-| -
 |-
 | [[File:Spell acidshot.png]]
 | [[Acid Ball]]
@@ -1865,11 +2640,16 @@
 | ACIDSHOT
 | 20
 | 20
+| Explosion: 0.0 <br/>Impact: 6.0
+| Explosion: 9
+| -
+| 90
+| +0.17s
+| -
 | -
 | -
 | A terrifying acidic projectile
 | 180
-| +10s
 |-
 | [[File:Spell thunderball.png]]
 | [[Thunder Charge]]
@@ -1877,11 +2657,16 @@
 | THUNDERBALL
 | 3
 | 120
+| Explosion: 180.0 <br/>Impact: 0.0
+| Explosion: 50
+| -
+| 100~120
+| +2.00s
+| -
 | -
 | -
 | A projectile with immense stored electricity
 | 300
-| +120s
 |-
 | [[File:Spell firebomb.png]]
 | [[Firebomb]]
@@ -1889,11 +2674,16 @@
 | FIREBOMB
 | &#8734;
 | 10
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 7
+| 2.9 DEG
+| 120~140
+| -
+| -
 | -
 | -
 | Slow, fiery bolt
 | 90
-| -
 |-
 | [[File:Spell soil.png]]
 | [[Chunk of Soil]]
@@ -1901,11 +2691,16 @@
 | SOILBALL
 | &#8734;
 | 5
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 15
+| -
+| 0~10
+| -
+| -
 | -
 | -
 | Don't soil yourself
 | 10
-| -
 |-
 | [[File:Spell death cross.png]]
 | [[Death Cross]]
@@ -1913,11 +2708,16 @@
 | DEATH_CROSS
 | &#8734;
 | 80
+| Explosion: 300.0 <br/>Impact: 0.0
+| Explosion: 25
+| -
+| 0
+| +0.67s
+| -
 | -
 | -
 | A deadly energy cross that explodes after a short time
 | 210
-| +40s
 |-
 | [[File:Spell death cross big.png]]
 | [[$Action_death_cross_big]]
@@ -1925,11 +2725,16 @@
 | DEATH_CROSS_BIG
 | 8
 | 150
+| Explosion: 400.0 <br/>Impact: 0.0
+| Explosion: 35
+| -
+| 0
+| +1.17s
+| -
 | -
 | -
 | $actiondesc_death_cross_big
 | 310
-| +70s
 |-
 | [[File:Spell mist radioactive.png]]
 | [[Toxic Mist]]
@@ -1937,11 +2742,16 @@
 | MIST_RADIOACTIVE
 | &#8734;
 | 40
+| 0.0
+| Explosion: 0
+| -
+| 0
+| +0.17s
+| -
 | -
 | -
 | A cloud of toxic mist
 | 80
-| +10s
 |-
 | [[File:Spell mist alcohol.png]]
 | [[Mist of Spirits]]
@@ -1949,11 +2759,16 @@
 | MIST_ALCOHOL
 | &#8734;
 | 40
+| 0.0
+| Explosion: 0
+| -
+| 0
+| +0.17s
+| -
 | -
 | -
 | A cloud of potent alcohol
 | 80
-| +10s
 |-
 | [[File:Spell mist slime.png]]
 | [[Slime Mist]]
@@ -1961,11 +2776,16 @@
 | MIST_SLIME
 | &#8734;
 | 40
+| 0.0
+| Explosion: 0
+| -
+| 0
+| +0.17s
+| -
 | -
 | -
 | A cloud of slimy mist
 | 80
-| +10s
 |-
 | [[File:Spell mist blood.png]]
 | [[Blood Mist]]
@@ -1973,11 +2793,16 @@
 | MIST_BLOOD
 | 10
 | 40
+| 0.0
+| Explosion: 0
+| -
+| 0
+| +0.17s
+| -
 | -
 | -
 | A cloud of blood mist
 | 120
-| +10s
 |-
 | [[File:Spell circle fire.png]]
 | [[Circle of Fire]]
@@ -1987,9 +2812,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.33s
+| -
+| -
+| -
 | An expanding circle of burning air
 | 170
-| +20s
 |-
 | [[File:Spell circle acid.png]]
 | [[Circle of Acid]]
@@ -1999,9 +2829,14 @@
 | 40
 | -
 | -
+| -
+| -
+| +0.33s
+| -
+| -
+| -
 | An expanding circle of dripping acid
 | 180
-| +20s
 |-
 | [[File:Spell circle oil.png]]
 | [[Circle of Oil]]
@@ -2011,9 +2846,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.33s
+| -
+| -
+| -
 | An expanding circle of slick oil
 | 160
-| +20s
 |-
 | [[File:Spell circle water.png]]
 | [[Circle of Water]]
@@ -2023,9 +2863,14 @@
 | 20
 | -
 | -
+| -
+| -
+| +0.33s
+| -
+| -
+| -
 | An expanding circle of water
 | 160
-| +20s
 |-
 | [[File:Spell material water.png]]
 | [[Water]]
@@ -2033,11 +2878,16 @@
 | MATERIAL_WATER
 | &#8734;
 | 0
+| 0.0
+| -
+| 0.0 DEG
+| 123~135
+| -0.25s
+| -0.17s
 | -
 | -
 | Transmute drops of water from nothing
 | 110
-| -15s
 |-
 | [[File:Spell material oil.png]]
 | [[Oil]]
@@ -2045,11 +2895,16 @@
 | MATERIAL_OIL
 | &#8734;
 | 0
+| 0.0
+| -
+| 0.0 DEG
+| 123~135
+| -0.25s
+| -0.17s
 | -
 | -
 | Transmute drops of oil from nothing
 | 140
-| -15s
 |-
 | [[File:Spell material blood.png]]
 | [[Blood]]
@@ -2057,11 +2912,16 @@
 | MATERIAL_BLOOD
 | 250
 | 0
+| 0.0
+| -
+| 0.0 DEG
+| 123~135
+| -0.25s
+| -0.17s
 | -
 | -
 | Blood blood blood
 | 130
-| -15s
 |-
 | [[File:Spell material acid.png]]
 | [[Acid]]
@@ -2069,11 +2929,16 @@
 | MATERIAL_ACID
 | &#8734;
 | 0
+| 0.0
+| -
+| 0.0 DEG
+| 123~135
+| -0.25s
+| -0.17s
 | -
 | -
 | Transmute drops of acid from nothing
 | 150
-| -15s
 |-
 | [[File:Spell material cement.png]]
 | [[Cement]]
@@ -2081,11 +2946,16 @@
 | MATERIAL_CEMENT
 | &#8734;
 | 0
+| 0.0
+| -
+| 0.0 DEG
+| 123~135
+| -0.25s
+| -0.17s
 | -
 | -
 | Transmute drops of wet cement from nothing
 | 100
-| -15s
 |-
 | [[File:Spell teleport projectile.png]]
 | [[Teleport Spell]]
@@ -2093,11 +2963,16 @@
 | TELEPORT_PROJECTILE
 | &#8734;
 | 40
+| Explosion: 0.0 <br/>Impact: 0.0
+| Explosion: 2
+| 0.0 DEG
+| 750~850
+| +0.05s
+| -
 | -1.0 DEG
 | -
 | Teleport to the location the spell ends up in
 | 130
-| +3s
 |-
 | [[File:Spell nuke.png]]
 | [[Nuke]]
@@ -2105,11 +2980,16 @@
 | NUKE
 | 1
 | 200
+| Explosion: 1000.0 <br/>Impact: 75.0
+| Explosion: 250
+| 0.6 DEG
+| 300
+| =0.33s
+| +10.00s
 | -
 | -
 | Take cover
 | 400
-| =20s
 |-
 | [[File:Spell fireworks.png]]
 | [[Fireworks!]]
@@ -2117,11 +2997,16 @@
 | FIREWORK
 | 20
 | 70
+| Explosion: 120.0 <br/>Impact: 25.0
+| Explosion: 15
+| 0.0 DEG
+| 70~80
+| +1.00s
+| -
 | -
 | -
 | A fiery, explosive projectile
 | 220
-| +60s
 |-
 | [[File:Spell summon wandghost.png]]
 | [[$Action_summon_wandghost]]
@@ -2131,9 +3016,14 @@
 | 300
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_summon_wandghost
 | 420
-| -
 |-
 | [[File:Spell touch gold.png]]
 | [[$Action_touch_gold]]
@@ -2143,9 +3033,14 @@
 | 300
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_touch_gold
 | 480
-| -
 |-
 | [[File:Spell touch water.png]]
 | [[$Action_touch_water]]
@@ -2155,9 +3050,14 @@
 | 280
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_touch_water
 | 420
-| -
 |-
 | [[File:Spell touch oil.png]]
 | [[$Action_touch_oil]]
@@ -2167,9 +3067,14 @@
 | 260
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_touch_oil
 | 380
-| -
 |-
 | [[File:Spell touch alcohol.png]]
 | [[$Action_touch_alcohol]]
@@ -2179,9 +3084,14 @@
 | 240
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_touch_alcohol
 | 360
-| -
 |-
 | [[File:Spell touch blood.png]]
 | [[$Action_touch_blood]]
@@ -2191,9 +3101,14 @@
 | 270
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_touch_blood
 | 390
-| -
 |-
 | [[File:Spell touch smoke.png]]
 | [[$Action_touch_smoke]]
@@ -2203,9 +3118,14 @@
 | 230
 | -
 | -
+| -
+| -
+| -
+| -
+| -
+| -
 | $actiondesc_touch_smoke
 | 350
-| -
 |-
 | [[File:Spell destruction.png]]
 | [[$Action_destruction]]
@@ -2215,7 +3135,12 @@
 | 600
 | -
 | -
+| -
+| -
+| +3.33s
+| +10.00s
+| -
+| -
 | $actiondesc_destruction
 | 600
-| +200s
 |}

@@ -36,10 +36,10 @@ local function base_column_generator(title,key)
     return {
         title = title,
         encode = function(action)
-            if action[key] ~= nil then
-                return tostring(action[key])
-            else
+            if action[key] == nil then
                 return "-"
+            else
+                return tostring(action[key])
             end
         end
     }
@@ -56,14 +56,16 @@ end
 
 local pure_verifier_factory = function(func, func_key)
     return function(action, key, context)
-        property, path = utils.get_property(action, key)
+        local property, path = utils.get_property(action, key)
         if property == nil then
             return "-"
         else
-            if  property.modified and 
+            if property.modified and 
                 property[func_key] ~= nil and
-                (property.value == property.assign or (func_key == "sub" and property.assign == 0 and context.non_negtive) ) and 
-                property.value == func(property) then
+                ( 
+                  (property.value == property.assign and property.value == func(property) ) or 
+                  (func_key == "sub" and property.assign == 0 and context.non_negative     )
+                ) then 
                 return property[func_key], func_key
             else
                 return "ERROR"
@@ -210,7 +212,89 @@ wikitextformatter.columns = {
                                   " DEG",
                                   {non_negative = true})
     },
-    speed = base_column_generator("Speed", "speed"),
+    speed = {
+        title = "Speed",
+        encode = function(action,context)
+            if(type(action.speed) == "table") then
+                return tostring(action.speed[1]) .. "~" ..  tostring(action.speed[2])
+            elseif(type(action.speed) == "number") then
+                return tostring(action.speed)
+            else
+                return "-"
+            end
+        end
+    },
+    spread =  {
+        title = "Spread",
+        encode = function(action,context)
+            if(type(action.spread) == "number") then
+                return string.format("%0.1f DEG", math.deg(action.spread))
+            else
+                return "-"
+            end
+        end
+    },
+    current_reload_time =
+    {
+        title = "Recharge time",
+        encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
+                                    wikitextformatter.verifier.pure_sub,
+                                    wikitextformatter.verifier.pure_assign
+                                  },
+                                  {"reflection","current_reload_time","current_reload_time"},
+                                  "s",
+                                  {non_negative = true, factor = 1/60, format="%0.2f"})
+    },
+    radius = {
+        title = "Radius",
+        encode = function(action, context)
+            local radius = action.radius
+            if radius ~= nil then
+                ret = ""
+                if radius.explosion ~= nil then
+                    ret = ret .. "Explosion: " .. radius.explosion
+                end
+                return ret
+            else
+                return "-"
+            end
+        end
+    },
+    damage = {
+        title = "Damage",
+        encode = function(action, context)
+            local damage = action.damage
+            if damage ~= nil then
+                ret = ""
+                if damage.slice ~= nil then
+                    ret = ret .. "Slice: " .. tostring(damage.slice)
+                end
+                if damage.fire ~= nil then
+                    if ret ~= "" then
+                        ret = ret .. " <br/>"
+                    end
+                    ret = ret .. "Fire: " .. tostring(damage.fire)
+                end
+                if damage.explosion ~= nil then
+                    if ret ~= "" then
+                        ret = ret .. " <br/>"
+                    end
+                    ret = ret .. "Explosion: " .. tostring(damage.explosion)
+                end
+                if damage.impact ~= nil then
+                    if ret ~= "" then
+                        ret = ret .. " <br/>"
+                        ret = ret .. "Impact: " .. tostring(damage.impact)
+                    else
+                        ret = ret  .. tostring(damage.impact)
+                    end
+                end
+                return ret
+            else
+                return "-"
+            end
+        end
+    }
 }
 
 wikitextformatter.debug_columns = {
@@ -220,12 +304,12 @@ wikitextformatter.debug_columns = {
     wikitextformatter.columns.id,
     wikitextformatter.columns.uses,
     wikitextformatter.columns.mana,
-    -- damage
-    -- radius
-    -- spread
+    wikitextformatter.columns.damage,
+    wikitextformatter.columns.radius,
+    wikitextformatter.columns.spread,
     wikitextformatter.columns.speed,
     wikitextformatter.columns.fire_rate_wait,
-    -- recharge_time
+    wikitextformatter.columns.current_reload_time,
     wikitextformatter.columns.spread_degrees,
     wikitextformatter.columns.damage_critical_chance,
     wikitextformatter.columns.description,
@@ -236,12 +320,12 @@ wikitextformatter.default_columns = {
     wikitextformatter.columns.name,
     wikitextformatter.columns.uses,
     wikitextformatter.columns.mana,
-    -- damage
-    -- radius
-    -- spread
+    wikitextformatter.columns.damage,
+    wikitextformatter.columns.radius,
+    wikitextformatter.columns.spread,
     wikitextformatter.columns.speed,
     wikitextformatter.columns.fire_rate_wait,
-    -- recharge_time
+    wikitextformatter.columns.current_reload_time,
     wikitextformatter.columns.spread_degrees,
     wikitextformatter.columns.damage_critical_chance,
     wikitextformatter.columns.description

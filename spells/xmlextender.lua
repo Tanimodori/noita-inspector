@@ -18,22 +18,63 @@ function xmlextender.extend(path_to_data, action)
         -- XML now in handler
         local proj_cp = utils.get_property(handler, {"root", "Entity", "ProjectileComponent"})
         if proj_cp~= nil and proj_cp._attr ~= nil then
-            -- speed
+            -- speed_min, speed_max -> speed
             local speed_min = proj_cp._attr.speed_min
             local speed_max = proj_cp._attr.speed_max
-            print(speed_min, speed_max)
             if speed_min ~= nil and speed_max ~= nil then
                 if speed_min < speed_max then
-                    action.speed = tostring(speed_min) .. "~" .. tostring(speed_max)
+                    action.speed = {tonumber(speed_min),tonumber(speed_max)}
                 else
-                    action.speed = tostring(speed_min)
+                    action.speed = tonumber(speed_min)
                 end
             end
+            -- direction_random_rad -> spread
+            local spread = proj_cp._attr.direction_random_rad
+            if spread ~= nil then
+                action.spread = tonumber(spread)
+            end
+            -- damage
+            _damage = {modified = false}
+            local damage_impact = proj_cp._attr.damage
+            if damage_impact ~= nil then
+                _damage.impact = damage_impact * 25
+                _damage.modified = true
+            end
+            -- config_explosion
+            local config_explosion_attr = utils.get_property(proj_cp, {"config_explosion","_attr"})
+            if config_explosion_attr ~= nil then
+                -- radius
+                local explosion_radius = config_explosion_attr.explosion_radius 
+                if explosion_radius ~= nil then
+                    action.radius = {explosion = explosion_radius}
+                end
+                -- damage
+                local damage_explosion = config_explosion_attr.damage
+                if damage_explosion  ~= nil then
+                    _damage.explosion = damage_explosion * 100
+                    _damage.modified = true
+                end
+            end
+            -- damage_by_time
+            local damage_by_time_attr = utils.get_property(proj_cp, {"damage_by_time","_attr"})
+            if damage_by_time_attr ~= nil then
+                -- slice
+                local damage_slice = damage_by_time_attr.slice
+                if damage_slice  ~= nil then
+                    _damage.slice = damage_slice * 25
+                    _damage.modified = true
+                end
+                -- fire
+                local damage_fire = damage_by_time_attr.fire
+                if damage_fire  ~= nil then
+                    _damage.fire = damage_fire * 25
+                    _damage.modified = true
+                end
+            end
+            if _damage.modified then
+                action.damage = _damage
+            end
         end
-        xml2lua = nil
-        handler = nil
-        parser = nil
-        entity_xml = nil
     end
 end
 
