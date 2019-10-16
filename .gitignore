@@ -41,4 +41,4 @@ luac.out
 
 # outputs
 output/*
-!output/sample.json
+!output/sample*

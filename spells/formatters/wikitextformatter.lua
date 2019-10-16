@@ -6,9 +6,10 @@ function wikitextformatter:new(file, columns, context)
     self.context = context
     function self:pre_format()
         file:write("{| class=\"wikitable sortable\" style=\"text-align: center\" width=\"100%\"\n")
-        for key,column in pairs(columns) do
+        for i,column in ipairs(columns) do
             if context ~= nil and context.translator ~= nil then
-                file:write("! " .. context.translator.translate("$" + column.title) .. "\n")
+                --file:write("! " .. context.translator:translate("$" .. column.title) .. "\n")
+                file:write("! " .. column.title .. "\n")
             else
                 file:write("! " .. column.title .. "\n")
             end
@@ -16,7 +17,7 @@ function wikitextformatter:new(file, columns, context)
     end
     function self:format(action, index, total)
         file:write("|-\n")
-        for key,column in pairs(columns) do
+        for i,column in ipairs(columns) do
             file:write("| " .. column.encode(action, context) .. "\n")
         end
         print(string.format("[%d/%d] action %s dumped.", index, total, action.id))
@@ -115,7 +116,7 @@ local scalar_indicator = function(verifiers, key, suffix)
             sign = "+"
             if(func_key == "assign") then
                 sign = "="
-            elseif value < 0 then
+            elseif (func_key == "sub") then
                     sign = "-"
             end
             return sign .. tostring(value) .. suffix
@@ -129,6 +130,14 @@ local scalar_indicator = function(verifiers, key, suffix)
     end
 end
 
+-- page title hax
+local function TitleCase(str)
+	local function tchelper(first, rest)
+	   return first:upper()..rest:lower()
+	end
+	return str:gsub("(%a)([%w_']*)", tchelper):gsub(" Of "," of ")
+end
+
 wikitextformatter.columns = {
     icon = {
         title = "Icon",
@@ -137,11 +146,15 @@ wikitextformatter.columns = {
         end
     },
     name = {
-        title = "Name",
+        title = "Spell",
         encode = function(action, context)
             local basename = action.name
             if context ~= nil and context.translator ~= nil then
-                return "[[" .. context.translator.translate(basename,"en") .. "|" .. context.translator.translate(basename) .. "]]"
+                if context.translator.locale == "en" then
+                    return "[[" .. TitleCase(context.translator:translate(basename,"en")) .. "]]"
+                else
+                    return "[[" .. TitleCase(context.translator:translate(basename,"en")) .. "|" .. context.translator:translate(basename) .. "]]"
+                end
             else
                 return "[[" .. basename .. "]]"
             end
@@ -152,7 +165,7 @@ wikitextformatter.columns = {
         encode = function(action, context)
             local basename = action.description
             if context ~= nil and context.translator ~= nil then
-                return context.translator.translate(basename)
+                return context.translator:translate(basename)
             else
                 return basename
             end
@@ -180,7 +193,7 @@ wikitextformatter.columns = {
                                   {"reflection","c","damage_critical_chance"},
                                   "%")
     },
-    fire_rate_wate = {
+    fire_rate_wait = {
         -- title = "Cast Delay",
         title = "fire_rate_wait",
         encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
@@ -189,10 +202,51 @@ wikitextformatter.columns = {
                                   },
                                   {"reflection","c","fire_rate_wait"},
                                   "s")
+    },
+    spread_degrees = {
+        title = "Spread modifier",
+        encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
+                                    wikitextformatter.verifier.pure_sub,
+                                    wikitextformatter.verifier.pure_assign
+                                  },
+                                  {"reflection","c","spread_degrees"},
+                                  " DEG")
     }
 }
 
-wikitextformatter.debug_columns = wikitextformatter.columns
-wikitextformatter.default_columns = wikitextformatter.columns
+wikitextformatter.debug_columns = {
+    wikitextformatter.columns.icon,
+    wikitextformatter.columns.name,
+    wikitextformatter.columns.type,
+    wikitextformatter.columns.id,
+    wikitextformatter.columns.uses,
+    wikitextformatter.columns.mana,
+    -- damage
+    -- radius
+    -- spread
+    -- speed
+    -- cast_delay
+    -- recharge_time
+    wikitextformatter.columns.spread_degrees,
+    wikitextformatter.columns.damage_critical_chance,
+    wikitextformatter.columns.description,
+    wikitextformatter.columns.price,
+    wikitextformatter.columns.fire_rate_wait
+}
+wikitextformatter.default_columns = {
+    wikitextformatter.columns.icon,
+    wikitextformatter.columns.name,
+    wikitextformatter.columns.uses,
+    wikitextformatter.columns.mana,
+    -- damage
+    -- radius
+    -- spread
+    -- speed
+    -- cast_delay
+    -- recharge_time
+    wikitextformatter.columns.spread_degrees,
+    wikitextformatter.columns.damage_critical_chance,
+    wikitextformatter.columns.description
+}
 
 return wikitextformatter

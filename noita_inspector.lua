@@ -22,9 +22,12 @@ local function parse_args()
               :args(0)
               :description "Output as json.",
         parser:option "-w --wikitext"
-              :args(1)
+              :args("?")
               :description "Output as wikitext. Argument are the desired outcome of your columns"
     )
+    parser:option("-l --locale")
+          :args(1)
+          :description "The locale of wikitext output file."
     parser:option("-o --output")
           :args(1)
           :description "The filename of output file."
@@ -59,13 +62,20 @@ local function main()
     -- simulate & print
     if args.wikitext then
         local wikitextformatter = require ("spells/formatters/wikitextformatter")
+        -- columns
         local columns = wikitextformatter.default_columns
-        if type(args.wikitext == string) then
-            if args.wikitext == "debug" then
+        if #args.wikitext > 0 then
+            if args.wikitext[1] == "debug" then
                 columns = wikitextformatter.debug_columns
             end
         end
         local context = {}
+        -- locale
+        if args.locale ~= nil then
+            translator = require("spells/formatters/translator")
+            translator_instance = translator:new(args.path, args.locale)
+            context.translator = translator_instance
+        end
         spells.simulate_action(env, wikitextformatter:new(file, columns, context))
     else
         local jsonformatter = require ("spells/formatters/jsonformatter")
