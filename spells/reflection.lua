@@ -7,9 +7,11 @@ reflection_metatable_for_table = {
         if( type(value) == "table") then
             -- expression
             table[key].assign = value.value
+            table[key].value = value.value
         else
             -- raw value
             table[key].assign = value
+            table[key].value = value
         end
         table[key].modified = true
     end

@@ -1,7 +1,6 @@
-formatter = {}
-formatter.jsonformatter = {}
+jsonformatter = {}
 
-function formatter.jsonformatter:new(file)
+function jsonformatter:new(file)
     self.file = file
     function self:pre_format( )
         file:write("[\n")
@@ -20,4 +19,4 @@ function formatter.jsonformatter:new(file)
     return self
 end
 
-return formatter
+return jsonformatter

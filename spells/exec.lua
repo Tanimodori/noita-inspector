@@ -47,7 +47,6 @@ function exec_action(env, index)
     local env_local = {}
     setmetatable(env_local,{__index=env})
     env_local._G = env_local
-    print(env._c.extra_entities.value)
     -- exec action
     local action = env.exec_action(index)
     -- restore metatable & check for varible updates
