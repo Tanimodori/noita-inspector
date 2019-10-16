@@ -2,12 +2,27 @@
 Noita inspector by Tanimodori
 MIT License
 
-Usage lua.exe noita_inspector.lua <path-to-data> [<action_file_basename>]
+Usage lua.exe noita_inspector.lua -h
 --]]
 
 
 -- utils
 local json = require ("dkjson")
+local argparse = require ("argparse")
+
+local function parse_args()
+    local parser = argparse()
+        :name "noita-inspector"
+        :description "A lua script to inspect noita data."
+    parser:argument("path","path to the data folder of unpacked data.wak of Noita.")
+    parser:option("-s --source")
+          :description "The filename of action file storing spells data."
+          :default "gun_actions.lua"
+    parser:option("-o --output")
+          :description "The filename of output file."
+          :default ("output/output_" .. os.date("%Y-%m-%d_%H%M%S",os.time()) .. ".json")
+    return parser:parse()
+end
 
 local function save_result_closure(file)
     local function _save_result(file, index, total, action)
@@ -29,23 +44,18 @@ end
 local function main()
 
     -- parse args
-    local path_to_data = arg[1]
-    local gun_actions = "gun_actions.lua"
-    assert(arg[1] ~= nil, "Cannot find data")
-    if (arg[2] ~= nil) then
-        if(string.find(arg[2],".lua") == nil) then
-            arg[2] = arg[2] .. ".lua"
-        end
-        gun_actions = arg[2]
+    local args = parse_args()
+    if(string.find(args.source,".lua") == nil) then
+        args.source = args.source .. ".lua"
     end
     
     -- open file
-    local file = io.open("output/output_" .. gun_actions .. "_" .. os.date("%Y-%m-%d_%H%M%S",os.time()) .. ".json", "w")
+    local file = io.open(args.output, "w")
     file:write("[\n")
     -- set env & stimulate
     spells = require("spells/spells")
-    print(string.format("Dump starting, loading %s.", gun_actions))
-    local env = spells.get_simulation_env(path_to_data, gun_actions)
+    print(string.format("Dump starting, loading %s.", args.source))
+    local env = spells.get_simulation_env(args.path, args.source)
     spells.simulate_action(env, save_result_closure(file))
     -- close file
     file:write("\n]")

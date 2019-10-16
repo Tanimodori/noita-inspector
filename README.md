@@ -10,9 +10,11 @@ This inspector only works for simple attribute manipulations, i.e. not accurate 
 
 ## Usage
 
-Note: You new to unpack game data first.
+Note: You new to unpack data.wak of Noita first.
 
-`lua.exe noita_inspector.lua <path-to-data> [<action_file_basename>]`
+See usage by executing
+
+`lua.exe noita_inspector.lua -h`
 
 ## License
 
