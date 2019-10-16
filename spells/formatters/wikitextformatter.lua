@@ -95,13 +95,12 @@ wikitextformatter.verifier = {
     pure_assign = pure_verifier_factory(function(property) return property.assign end, "assign")
 }
 
-local scalar_indicator = function(verifiers, key, suffix)
+local scalar_indicator = function(verifiers, key, suffix, additional_context)
     return function(action,context)
-        -- fire_rate_time > 0 hax 
-        if (type(key) == "table" and key[#key] == "fire_rate_wait") then
-            current_context = setmetatable({non_negative = true}, {__index = context})
-        else
+        if additional_context == nil then
             current_context = context
+        else
+            current_context = setmetatable(additional_context, {__index = context})
         end
         has_error = false
         for i,verifier in ipairs(verifiers) do
@@ -119,7 +118,17 @@ local scalar_indicator = function(verifiers, key, suffix)
             elseif (func_key == "sub") then
                     sign = "-"
             end
-            return sign .. tostring(value) .. suffix
+            -- factor
+            if (type(current_context.factor) == "number") then
+                value = value * current_context.factor
+            end
+            -- format
+            if (type(current_context.format) == "string") then
+                value_string = string.format(current_context.format, value)
+            else
+                value_string = tostring(value)
+            end
+            return sign .. value_string .. suffix
         elseif has_error then
             print("[Error] Not pure scale operation detected in action id: "..action.id..path..", dumping key-values of the property")
             print_property(property)
@@ -188,20 +197,22 @@ wikitextformatter.columns = {
     damage_critical_chance = {
         title = "Critical chance",
         encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
-                                    wikitextformatter.verifier.pure_sub
+                                    wikitextformatter.verifier.pure_sub,
+                                    wikitextformatter.verifier.pure_assign
                                   },
                                   {"reflection","c","damage_critical_chance"},
-                                  "%")
+                                  "%",
+                                  {non_negative = true}) -- fire_rate_time > 0 hax 
     },
     fire_rate_wait = {
-        -- title = "Cast Delay",
-        title = "fire_rate_wait",
+        title = "Cast Delay",
         encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
                                     wikitextformatter.verifier.pure_sub,
                                     wikitextformatter.verifier.pure_assign
                                   },
                                   {"reflection","c","fire_rate_wait"},
-                                  "s")
+                                  "s",
+                                  {non_negative = true, factor = 1/60, format="%0.2f"})
     },
     spread_degrees = {
         title = "Spread modifier",
@@ -210,7 +221,8 @@ wikitextformatter.columns = {
                                     wikitextformatter.verifier.pure_assign
                                   },
                                   {"reflection","c","spread_degrees"},
-                                  " DEG")
+                                  " DEG",
+                                  {non_negative = true})
     }
 }
 
@@ -225,13 +237,12 @@ wikitextformatter.debug_columns = {
     -- radius
     -- spread
     -- speed
-    -- cast_delay
+    wikitextformatter.columns.fire_rate_wait,
     -- recharge_time
     wikitextformatter.columns.spread_degrees,
     wikitextformatter.columns.damage_critical_chance,
     wikitextformatter.columns.description,
-    wikitextformatter.columns.price,
-    wikitextformatter.columns.fire_rate_wait
+    wikitextformatter.columns.price
 }
 wikitextformatter.default_columns = {
     wikitextformatter.columns.icon,
@@ -242,7 +253,7 @@ wikitextformatter.default_columns = {
     -- radius
     -- spread
     -- speed
-    -- cast_delay
+    wikitextformatter.columns.fire_rate_wait,
     -- recharge_time
     wikitextformatter.columns.spread_degrees,
     wikitextformatter.columns.damage_critical_chance,
