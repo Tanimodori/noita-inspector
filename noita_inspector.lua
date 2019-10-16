@@ -39,26 +39,27 @@ end
 
 -- math.max hax
 
-math.max = function (x,...)
-    if (type(x) == "table") then
-        x = x.value
-    end
-    for i, v in ipairs{...} do 
-        if (v == nil) then
-            return x
-        end
+local get_true_value = function(...)
+    local args = {...}
+    for i,v in ipairs(args) do
         if (type(v) == "table") then
             if (v.source ~= nil) then
-                v = v.source.value
+                args[i] = v.source.value
             else
-                v = v.value
+                args[i] = v.value
             end
+        else
+            args[i] = v
         end
-        if (v>x) then
-            x=v
-        end 
-    end  
-    return x 
+    end
+    return args
+end
+
+old_max = math.max
+math.max = function (...)
+    local true_value = get_true_value(...)
+    local ret = old_max(table.unpack(true_value))
+    return ret
 end
 
 
