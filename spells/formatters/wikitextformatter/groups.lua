@@ -15,14 +15,14 @@ local columns = require("spells/formatters/wikitextformatter/columns")
 
 groups = {
     projectiles = {
-        title = "Projectiles",
+        title = columns.title_wrapper("$__inspector_projectiles", "Projectiles"),
         contains_action = function(action, context)
             return action.type == action_type.ACTION_TYPE_PROJECTILE
         end,
         columns = columns.default_columns
     },
     static_projectiles = {
-        title = "Static Projectiles",
+        title = columns.title_wrapper("$__inspector_static_projectiles", "Static Projectiles"),
         contains_action = function(action, context)
             return action.type == action_type.ACTION_TYPE_STATIC_PROJECTILE
         end,
@@ -38,7 +38,7 @@ groups = {
         }
     },
     utility_passive = {
-        title = "Utility/Passive",
+        title = columns.title_wrapper("$__inspector_utility_passive", "Utility/Passive"),
         contains_action = function(action, context)
             return action.type == action_type.ACTION_TYPE_UTILITY or action.type == action_type.ACTION_TYPE_PASSIVE
         end,
@@ -52,7 +52,7 @@ groups = {
         }
     },
     modifier = {
-        title = "Projectile Modifiers",
+        title = columns.title_wrapper("$__inspector_modifier", "Projectile Modifiers"),
         contains_action = function(action, context)
             return action.type == action_type.ACTION_TYPE_MODIFIER
         end,
@@ -66,7 +66,7 @@ groups = {
         }
     },
     materials = {
-        title = "Materials",
+        title = columns.title_wrapper("$__inspector_materials", "Materials"),
         contains_action = function(action, context)
             return action.type == action_type.ACTION_TYPE_MATERIAL
         end,
@@ -82,7 +82,7 @@ groups = {
         }
     },
     multicast = {
-        title = "Multicast",
+        title = columns.title_wrapper("$__inspector_multicast", "Multicast"),
         contains_action = function(action, context)
             return action.type == action_type.ACTION_TYPE_DRAW_MANY
         end,

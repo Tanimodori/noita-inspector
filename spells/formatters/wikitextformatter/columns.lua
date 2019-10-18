@@ -1,6 +1,13 @@
+
+local function title_wrapper(source, fallback)
+    return function(context)
+        return context.translate(source, nil, fallback)
+    end
+end
+
 local function base_column_generator(title,key,group)
     return {
-        title = title,
+        title = title_wrapper('$__inspector_'..key, title),
         encode = function(action)
             if action[key] == nil then
                 return "-"
@@ -83,6 +90,9 @@ local scalar_indicator = function(verifiers, key, suffix, additional_context)
             else
                 value_string = tostring(value)
             end
+            if (type(suffix) ~= 'string') then
+                suffix = suffix(context)
+            end
             return sign .. value_string .. suffix
         elseif has_error then
             print("[Error] Not pure scale operation detected in action id: "..action.id..path..", dumping key-values of the property")
@@ -102,15 +112,16 @@ local function TitleCase(str)
 	return str:gsub("(%a)([%w_']*)", tchelper):gsub(" Of "," of ")
 end
 
+
 columns = {
     icon = {
-        title = "Icon",
+        title = title_wrapper("$__inspector_icon", "Icon"),
         encode = function(action, context)
             return "[[File:Spell " .. string.gsub(string.match(action.sprite,"/([^/]+.png)$"),"_"," ") .. "]]"
         end
     },
     name = {
-        title = "Spell",
+        title = title_wrapper("$__inspector_name", "Spell"),
         encode = function(action, context)
             local basename = action.name
             if context and context.translator then
@@ -125,15 +136,17 @@ columns = {
         end
     },
     description = {
-        title = "Description",
+        title = title_wrapper("$__inspector_description", "Description"),
         encode = function(action, context)
             local basename = action.description
             if context and context.translator then
-                local translation = context.translator:translate(basename)
+                local translation = context.translate(basename)
                 local delay_frames = utils.get_property(action, {"reflection", "function_args","add_projectile_trigger_timer","delay_frames"})
                 if delay_frames then
                     -- delay_times hax
-                    return translation:gsub("timer", string.format("timer (%0.2fs)",tonumber(delay_frames/60)))
+                    local timer_localized = context.translate("$__inspector_timer",nil,"timer")
+                    local second_localized = context.translate("$__inspector_second",nil,"s")
+                    return translation:gsub(timer_localized, string.format(timer_localized .." (%0.2f%s)",tonumber(delay_frames/60), second_localized))
                 else
                     return translation
                 end
@@ -143,7 +156,7 @@ columns = {
         end
     },
     uses = {
-        title = "Uses",
+        title = title_wrapper("$__inspector_uses", "Uses"),
         encode = function(action, context)
             if action.max_uses then
                 return tostring(action.max_uses)
@@ -157,7 +170,7 @@ columns = {
     type = base_column_generator("Type", "type"),
     id = base_column_generator("ID", "id"),
     damage_critical_chance = {
-        title = "Critical chance",
+        title = title_wrapper("$__inspector_damage_critical_chance", "Critical chance"),
         encode = scalar_indicator({ verifier.pure_add,
                                     verifier.pure_sub,
                                     verifier.pure_assign
@@ -167,27 +180,27 @@ columns = {
                                   {non_negative = true}) -- fire_rate_time > 0 hax 
     },
     fire_rate_wait = {
-        title = "Cast delay",
+        title = title_wrapper("$__inspector_fire_rate_wait", "Cast delay"),
         encode = scalar_indicator({ verifier.pure_add,
                                     verifier.pure_sub,
                                     verifier.pure_assign
                                   },
                                   {"reflection","c","fire_rate_wait"},
-                                  "s",
+                                  title_wrapper("$__inspector_second","s"),
                                   {non_negative = true, factor = 1/60, format="%0.2f"})
     },
     spread_degrees = {
-        title = "Spread modifier",
+        title = title_wrapper("$__inspector_spread_degrees", "Spread modifier"),
         encode = scalar_indicator({ verifier.pure_add,
                                     verifier.pure_sub,
                                     verifier.pure_assign
                                   },
                                   {"reflection","c","spread_degrees"},
-                                  " DEG",
+                                  title_wrapper("$__inspector_deg"," DEG"),
                                   {non_negative = true})
     },
     speed = {
-        title = "Speed",
+        title = title_wrapper("$__inspector_speed", "Speed"),
         encode = function(action,context)
             if(type(action.speed) == "table") then
                 return tostring(action.speed[1]) .. "~" ..  tostring(action.speed[2])
@@ -199,10 +212,10 @@ columns = {
         end
     },
     spread =  {
-        title = "Spread",
+        title = title_wrapper("$__inspector_spread", "Spread"),
         encode = function(action,context)
             if(type(action.spread) == "number") then
-                return string.format("%0.1f DEG", math.deg(action.spread))
+                return string.format("%0.1f" .. context.translate("$__inspector_deg",nil," DEG"), math.deg(action.spread))
             else
                 return "-"
             end
@@ -210,23 +223,23 @@ columns = {
     },
     current_reload_time =
     {
-        title = "Recharge time",
+        title = title_wrapper("$__inspector_current_reload_time", "Recharge time"),
         encode = scalar_indicator({ verifier.pure_add,
                                     verifier.pure_sub,
                                     verifier.pure_assign
                                   },
                                   {"reflection","current_reload_time","current_reload_time"},
-                                  "s",
+                                  title_wrapper("$__inspector_second","s"),
                                   {non_negative = true, factor = 1/60, format="%0.2f"})
     },
     radius = {
-        title = "Radius",
+        title = title_wrapper("$__inspector_radius", "Radius"),
         encode = function(action, context)
             local radius = action.radius
             if radius then
                 ret = ""
                 if radius.explosion then
-                    ret = ret .. "Explosion: " .. radius.explosion
+                    ret = ret .. context.translate("$__inspector_explosion",nil,"s") .. ": " .. radius.explosion
                 end
                 return ret
             else
@@ -235,36 +248,36 @@ columns = {
         end
     },
     damage = {
-        title = "Damage",
+        title = title_wrapper("$__inspector_damage", "Damage"),
         encode = function(action, context)
             local damage = action.damage
             if damage then
                 ret = ""
                 if damage.slice then
-                    ret = ret .. "Slice: " .. tostring(damage.slice)
+                    ret = ret .. context.translate("$__inspector_slice",nil,"s") .. ": " .. tostring(damage.slice)
                 end
                 if damage.fire then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
                     end
-                    ret = ret .. "Fire: " .. tostring(damage.fire)
+                    ret = ret .. context.translate("$__inspector_fire",nil,"s") .. ": " .. tostring(damage.fire)
                 end
                 if damage.explosion then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
                     end
-                    ret = ret .. "Explosion: " .. tostring(damage.explosion)
+                    ret = ret .. context.translate("$__inspector_explosion",nil,"s") .. ": " .. tostring(damage.explosion)
                 end
                 if damage.electricity then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
                     end
-                    ret = ret .. "Electricity: " .. tostring(damage.electricity)
+                    ret = ret .. context.translate("$__inspector_electricity",nil,"s") .. ": " .. tostring(damage.electricity)
                 end
                 if damage.impact then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
-                        ret = ret .. "Impact: " .. tostring(damage.impact)
+                        ret = ret .. context.translate("$__inspector_impact",nil,"s") .. ": " .. tostring(damage.impact)
                     else
                         ret = ret  .. tostring(damage.impact)
                     end
@@ -276,7 +289,7 @@ columns = {
         end
     },
     note = {
-        title = "Notes",
+        title = title_wrapper("$__inspector_note", "Notes"),
         encode = function(action, context)
             return "-"
         end
@@ -316,5 +329,7 @@ columns.default_columns = {
     columns.damage_critical_chance,
     columns.description
 }
+
+columns.title_wrapper = title_wrapper
 
 return columns

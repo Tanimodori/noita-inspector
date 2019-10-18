@@ -82,13 +82,15 @@ local function main()
         -- locale
         if args.locale ~= nil then
             -- init translator
-            translator = require("spells/formatters/translator")
+            translator = require("i18n/translator")
             translator_instance = translator:new(args.locale)
             -- load symbols
             local path_to_translation = args.path .. '\\translations\\common.csv'
             local path_to_translation_dev = args.path .. '\\translations\\common_dev.csv'
+            local inspector_translations = '.\\i18n\\inspector_translations.csv'
             translator:load(path_to_translation)
             translator:load(path_to_translation_dev)
+            translator:load(inspector_translations)
             context.translator = translator_instance
         end
         spells.simulate_action(args.path, env, wikitextformatter:new(file, context))
