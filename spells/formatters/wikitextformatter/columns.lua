@@ -145,7 +145,7 @@ columns = {
             end
         end
     },
-    mana = base_column_generator("Mana Drain", "mana"),
+    mana = base_column_generator("Mana drain", "mana"),
     price = base_column_generator("Price", "price"),
     type = base_column_generator("Type", "type"),
     id = base_column_generator("ID", "id"),
@@ -160,7 +160,7 @@ columns = {
                                   {non_negative = true}) -- fire_rate_time > 0 hax 
     },
     fire_rate_wait = {
-        title = "Cast Delay",
+        title = "Cast delay",
         encode = scalar_indicator({ verifier.pure_add,
                                     verifier.pure_sub,
                                     verifier.pure_assign

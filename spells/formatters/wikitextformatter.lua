@@ -51,6 +51,7 @@ function wikitextformatter:new(file, context)
             file:write("|}\n")
         else
             -- grouped
+            file:write("== List Of Spells ==\n")
             for i,group in ipairs(context.groups) do
                 -- headers
                 file:write("=== " .. group.title .. " ===\n")
