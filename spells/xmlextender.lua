@@ -1,4 +1,4 @@
-local utils = require("spells/utils")
+local utils = require("utils")
 --Uses a handler that converts the XML to a Lua table
 xmlextender = {}
 
@@ -20,16 +20,23 @@ local function load_projectile_handler(path_to_data, action)
     return nil
 end
 
--- return a list of ProjectileComponent from document recursively
-local function load_projectile_components(document)
+-- return a list of components from document recursively
+local function load_components(document, targets)
+    local current_targets = nil
+    if type(targets) == "string" then
+        current_targets = {targets}
+    else
+        current_targets = targets
+    end
+
     local ret = {}
     for key,value in pairs(document) do
-        if key == "ProjectileComponent" then
+        if utils.index_of(key,current_targets) ~= -1 then
             table.insert(ret, value)
         else
             -- get ProjectileComponent recursively
             if type(value) == "table" then
-                local sub_ret = load_projectile_components(value)
+                local sub_ret = load_components(value, targets)
                 if #sub_ret > 0 then
                     -- insert into return values
                     for i,comp in ipairs(sub_ret) do table.insert(ret, comp) end
@@ -45,7 +52,7 @@ function xmlextender.extend(path_to_data, action)
     if handler then
         local entity = utils.get_property(handler, {"root", "Entity"})
         if entity then
-            for i,proj_cp in ipairs(load_projectile_components(entity)) do 
+            for i,proj_cp in ipairs(load_components(entity, {"ProjectileComponent", "LightningComponent"})) do 
                 if proj_cp and proj_cp._attr then
                     -- speed_min, speed_max -> speed
                     local speed_min = proj_cp._attr.speed_min
@@ -97,6 +104,12 @@ function xmlextender.extend(path_to_data, action)
                         local damage_fire = damage_by_type_attr.fire
                         if damage_fire and tonumber(damage_fire) > 0 then
                             _damage.fire = damage_fire * 25
+                            _damage.modified = true
+                        end
+                        -- electricity
+                        local damage_electricity = damage_by_type_attr.electricity
+                        if damage_electricity and tonumber(damage_electricity) > 0 then
+                            _damage.electricity = damage_electricity * 500
                             _damage.modified = true
                         end
                     end

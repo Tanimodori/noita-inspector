@@ -28,7 +28,7 @@ local pure_verifier_factory = function(func, func_key)
             return "-"
         else
             if property.modified and 
-                property[func_key] ~= nil and
+                property[func_key] and
                 ( 
                   (property.value == property.assign and property.value == func(property) ) or 
                   (func_key == "sub" and property.assign == 0 and context.non_negative     )
@@ -113,7 +113,7 @@ columns = {
         title = "Spell",
         encode = function(action, context)
             local basename = action.name
-            if context ~= nil and context.translator ~= nil then
+            if context and context.translator then
                 if context.translator.locale == "en" then
                     return "[[" .. TitleCase(context.translator:translate(basename,"en")) .. "]]"
                 else
@@ -128,7 +128,7 @@ columns = {
         title = "Description",
         encode = function(action, context)
             local basename = action.description
-            if context ~= nil and context.translator ~= nil then
+            if context and context.translator then
                 return context.translator:translate(basename)
             else
                 return basename
@@ -138,7 +138,7 @@ columns = {
     uses = {
         title = "Uses",
         encode = function(action, context)
-            if action.max_uses ~= nil then
+            if action.max_uses then
                 return tostring(action.max_uses)
             else
                 return "&#8734;"
@@ -216,9 +216,9 @@ columns = {
         title = "Radius",
         encode = function(action, context)
             local radius = action.radius
-            if radius ~= nil then
+            if radius then
                 ret = ""
-                if radius.explosion ~= nil then
+                if radius.explosion then
                     ret = ret .. "Explosion: " .. radius.explosion
                 end
                 return ret
@@ -231,24 +231,30 @@ columns = {
         title = "Damage",
         encode = function(action, context)
             local damage = action.damage
-            if damage ~= nil then
+            if damage then
                 ret = ""
-                if damage.slice ~= nil then
+                if damage.slice then
                     ret = ret .. "Slice: " .. tostring(damage.slice)
                 end
-                if damage.fire ~= nil then
+                if damage.fire then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
                     end
                     ret = ret .. "Fire: " .. tostring(damage.fire)
                 end
-                if damage.explosion ~= nil then
+                if damage.explosion then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
                     end
                     ret = ret .. "Explosion: " .. tostring(damage.explosion)
                 end
-                if damage.impact ~= nil then
+                if damage.electricity then
+                    if ret ~= "" then
+                        ret = ret .. " <br/>"
+                    end
+                    ret = ret .. "Electricity: " .. tostring(damage.electricity)
+                end
+                if damage.impact then
                     if ret ~= "" then
                         ret = ret .. " <br/>"
                         ret = ret .. "Impact: " .. tostring(damage.impact)

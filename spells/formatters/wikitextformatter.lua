@@ -1,4 +1,4 @@
-local utils = require("spells/utils")
+local utils = require("utils")
 
 wikitextformatter = {}
 
