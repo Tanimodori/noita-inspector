@@ -4,18 +4,31 @@ xmlextender = {}
 
 local function load_projectile_handler(path_to_data, action)
     -- entity_filename
-    local entity_filename = utils.get_property(action, {"reflection", "function_args", "add_projectile", "entity_filename"})
-    if entity_filename then
-        entity_filename = path_to_data .. "\\" .. entity_filename:gsub("^data/",""):gsub("/","\\")
-        local xml2lua = require("xml2lua")
-        local tree = require("xmlhandler.tree")
-        local entity_xml = xml2lua.loadFile(entity_filename)
-        --Instantiates the XML parser
-        local handler = tree:new()
-        local parser = xml2lua.parser(handler)
-        parser:parse(entity_xml)
-        -- XML now in handler
-        return handler
+    local function_args = utils.get_property(action, {"reflection", "function_args"})
+    local add_projectile = nil
+    if function_args then
+        if function_args.add_projectile then
+            add_projectile = function_args.add_projectile
+        elseif function_args.add_projectile_trigger_timer then
+            add_projectile = function_args.add_projectile_trigger_timer
+        elseif function_args.add_projectile_trigger_hit_world then
+            add_projectile = function_args.add_projectile_trigger_hit_world
+        end
+    end
+    if add_projectile then
+        local entity_filename = add_projectile.entity_filename
+        if entity_filename then
+            entity_filename = path_to_data .. "\\" .. entity_filename:gsub("^data/",""):gsub("/","\\")
+            local xml2lua = require("xml2lua")
+            local tree = require("xmlhandler.tree")
+            local entity_xml = xml2lua.loadFile(entity_filename)
+            --Instantiates the XML parser
+            local handler = tree:new()
+            local parser = xml2lua.parser(handler)
+            parser:parse(entity_xml)
+            -- XML now in handler
+            return handler
+        end
     end
     return nil
 end
@@ -52,7 +65,7 @@ function xmlextender.extend(path_to_data, action)
     if handler then
         local entity = utils.get_property(handler, {"root", "Entity"})
         if entity then
-            for i,proj_cp in ipairs(load_components(entity, {"ProjectileComponent", "LightningComponent"})) do 
+            for i,proj_cp in ipairs(load_components(entity, {"ProjectileComponent", "LightningComponent","ExplosionComponent"})) do 
                 if proj_cp and proj_cp._attr then
                     -- speed_min, speed_max -> speed
                     local speed_min = proj_cp._attr.speed_min
@@ -86,7 +99,11 @@ function xmlextender.extend(path_to_data, action)
                         end
                         -- damage
                         local damage_explosion = config_explosion_attr.damage
-                        if damage_explosion and tonumber(damage_explosion) > 0 then
+                        if not damage_explosion then
+                            -- Meteor hax, assuming default value 
+                            damage_explosion = 5
+                        end
+                        if tonumber(damage_explosion) > 0 then
                             _damage.explosion = damage_explosion * 100
                             _damage.modified = true
                         end

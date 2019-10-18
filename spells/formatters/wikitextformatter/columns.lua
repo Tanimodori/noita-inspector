@@ -129,7 +129,14 @@ columns = {
         encode = function(action, context)
             local basename = action.description
             if context and context.translator then
-                return context.translator:translate(basename)
+                local translation = context.translator:translate(basename)
+                local delay_frames = utils.get_property(action, {"reflection", "function_args","add_projectile_trigger_timer","delay_frames"})
+                if delay_frames then
+                    -- delay_times hax
+                    return translation:gsub("timer", string.format("timer (%0.2fs)",tonumber(delay_frames/60)))
+                else
+                    return translation
+                end
             else
                 return basename
             end
