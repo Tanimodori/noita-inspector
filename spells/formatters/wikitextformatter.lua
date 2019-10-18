@@ -3,35 +3,25 @@ local utils = require("spells/utils")
 wikitextformatter = {}
 
 function wikitextformatter:new(file, context)
-    self.file = file
-    self.columns = columns
-    self.context = context
     function self:pre_format()
-        if context == nil or context.groups == nil then
-            -- column
-            file:write("{| class=\"wikitable sortable\" style=\"text-align: center\" width=\"100%\"\n")
-            for i,column in ipairs(columns) do
-                -- if context ~= nil and context.translator ~= nil then
-                --file:write("! " .. context.translator:translate("$" .. column.title) .. "\n")
-                file:write("! " .. column.title .. "\n")
-            end
-        else
+        if context ~= nil and context.groups ~= nil then
             -- grouped
             for i,group in ipairs(context.groups) do
                 group.actions = {}
                 group.action_ids = {}
             end
+        else
+            -- column
+            file:write("{| class=\"wikitable sortable\" style=\"text-align: center\" width=\"100%\"\n")
+            for i,column in ipairs(context.columns) do
+                -- if context ~= nil and context.translator ~= nil then
+                --file:write("! " .. context.translator:translate("$" .. column.title) .. "\n")
+                file:write("! " .. column.title .. "\n")
+            end
         end
     end
     function self:format(action, index, total)
-        if context.groups == nil then
-            -- column
-            file:write("|-\n")
-            for i,column in ipairs(columns) do
-                file:write("| " .. column.encode(action, context) .. "\n")
-            end
-            print(string.format("[%d/%d] action %s dumped.", index, total, action.id))
-        else
+        if context ~= nil and context.groups ~= nil then
             -- grouped
             for i,group in ipairs(context.groups) do
                 if group.contains_action(action, context) then
@@ -43,13 +33,17 @@ function wikitextformatter:new(file, context)
                 end
             end
             print(string.format("[%d/%d] action %s dumped.", index, total, action.id))
+        else
+            -- column
+            file:write("|-\n")
+            for i,column in ipairs(context.columns) do
+                file:write("| " .. column.encode(action, context) .. "\n")
+            end
+            print(string.format("[%d/%d] action %s dumped.", index, total, action.id))
         end
     end
     function self:post_format()
-        if context.groups == nil then
-            -- column
-            file:write("|}\n")
-        else
+        if context ~= nil and context.groups ~= nil then
             -- grouped
             file:write("== List Of Spells ==\n")
             for i,group in ipairs(context.groups) do
@@ -69,6 +63,9 @@ function wikitextformatter:new(file, context)
                 -- footers
                 file:write("|}\n\n")
             end
+        else
+            -- column
+            file:write("|}\n")
         end
     end
     return self

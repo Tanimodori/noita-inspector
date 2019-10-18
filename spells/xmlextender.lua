@@ -36,7 +36,7 @@ function xmlextender.extend(path_to_data, action)
             -- damage
             _damage = {modified = false}
             local damage_impact = proj_cp._attr.damage
-            if damage_impact ~= nil then
+            if damage_impact ~= nil and tonumber(damage_impact) > 0 then
                 _damage.impact = damage_impact * 25
                 _damage.modified = true
             end
@@ -45,28 +45,28 @@ function xmlextender.extend(path_to_data, action)
             if config_explosion_attr ~= nil then
                 -- radius
                 local explosion_radius = config_explosion_attr.explosion_radius 
-                if explosion_radius ~= nil then
+                if explosion_radius ~= nil and tonumber(explosion_radius) > 0  then
                     action.radius = {explosion = explosion_radius}
                 end
                 -- damage
                 local damage_explosion = config_explosion_attr.damage
-                if damage_explosion  ~= nil then
+                if damage_explosion ~= nil and tonumber(damage_explosion) > 0 then
                     _damage.explosion = damage_explosion * 100
                     _damage.modified = true
                 end
             end
-            -- damage_by_time
-            local damage_by_time_attr = utils.get_property(proj_cp, {"damage_by_time","_attr"})
-            if damage_by_time_attr ~= nil then
+            -- damage_by_type
+            local damage_by_type_attr = utils.get_property(proj_cp, {"damage_by_type","_attr"})
+            if damage_by_type_attr ~= nil then
                 -- slice
-                local damage_slice = damage_by_time_attr.slice
-                if damage_slice  ~= nil then
+                local damage_slice = damage_by_type_attr.slice
+                if damage_slice ~= nil and tonumber(damage_slice) > 0  then
                     _damage.slice = damage_slice * 25
                     _damage.modified = true
                 end
                 -- fire
-                local damage_fire = damage_by_time_attr.fire
-                if damage_fire  ~= nil then
+                local damage_fire = damage_by_type_attr.fire
+                if damage_fire ~= nil and tonumber(damage_fire) > 0 then
                     _damage.fire = damage_fire * 25
                     _damage.modified = true
                 end
