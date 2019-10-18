@@ -63,10 +63,10 @@ local function main()
     if args.wikitext then
         local wikitextformatter = require ("spells/formatters/wikitextformatter")
         -- columns
-        local columns = wikitextformatter.default_columns
+        local columns = wikitextformatter.columns.default_columns
         if #args.wikitext > 0 then
             if args.wikitext[1] == "debug" then
-                columns = wikitextformatter.debug_columns
+                columns = wikitextformatter.columns.debug_columns
             end
         end
         local context = {}
