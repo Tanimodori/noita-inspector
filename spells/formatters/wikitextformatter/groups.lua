@@ -90,7 +90,7 @@ groups = {
             columns.icon,
             columns.name,
             columns.mana,
-            columns.spread,
+            columns.spread_degrees,
             columns.description
         }
     },
