@@ -41,7 +41,7 @@ local pure_verifier_factory = function(func, func_key)
     end
 end
 
-wikitextformatter.verifier = {
+local verifier = {
     pure_add = pure_verifier_factory(function(property) return property.init_value + property["add"] end, "add"),
     pure_sub = pure_verifier_factory(function(property) return property.init_value - property["sub"] end, "sub"),
     pure_mul = pure_verifier_factory(function(property) return property.init_value * property["mul"] end, "mul"),
@@ -151,9 +151,9 @@ columns = {
     id = base_column_generator("ID", "id"),
     damage_critical_chance = {
         title = "Critical chance",
-        encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
-                                    wikitextformatter.verifier.pure_sub,
-                                    wikitextformatter.verifier.pure_assign
+        encode = scalar_indicator({ verifier.pure_add,
+                                    verifier.pure_sub,
+                                    verifier.pure_assign
                                   },
                                   {"reflection","c","damage_critical_chance"},
                                   "%",
@@ -161,9 +161,9 @@ columns = {
     },
     fire_rate_wait = {
         title = "Cast Delay",
-        encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
-                                    wikitextformatter.verifier.pure_sub,
-                                    wikitextformatter.verifier.pure_assign
+        encode = scalar_indicator({ verifier.pure_add,
+                                    verifier.pure_sub,
+                                    verifier.pure_assign
                                   },
                                   {"reflection","c","fire_rate_wait"},
                                   "s",
@@ -171,9 +171,9 @@ columns = {
     },
     spread_degrees = {
         title = "Spread modifier",
-        encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
-                                    wikitextformatter.verifier.pure_sub,
-                                    wikitextformatter.verifier.pure_assign
+        encode = scalar_indicator({ verifier.pure_add,
+                                    verifier.pure_sub,
+                                    verifier.pure_assign
                                   },
                                   {"reflection","c","spread_degrees"},
                                   " DEG",
@@ -204,9 +204,9 @@ columns = {
     current_reload_time =
     {
         title = "Recharge time",
-        encode = scalar_indicator({ wikitextformatter.verifier.pure_add,
-                                    wikitextformatter.verifier.pure_sub,
-                                    wikitextformatter.verifier.pure_assign
+        encode = scalar_indicator({ verifier.pure_add,
+                                    verifier.pure_sub,
+                                    verifier.pure_assign
                                   },
                                   {"reflection","current_reload_time","current_reload_time"},
                                   "s",
@@ -261,7 +261,13 @@ columns = {
                 return "-"
             end
         end
-    }
+    },
+    note = {
+        title = "Notes",
+        encode = function(action, context)
+            return "-"
+        end
+    },
 }
 
 columns.debug_columns = {

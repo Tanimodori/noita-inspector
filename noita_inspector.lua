@@ -25,6 +25,11 @@ local function parse_args()
               :args("?")
               :description "Output as wikitext. Argument are the desired outcome of your columns"
     )
+    --[[
+    parser:option "-n --no-trigger-and-timer"
+          :args(0)
+          :description "Do not print trigger and timers.",
+    ]]--
     parser:option("-l --locale")
           :args(1)
           :description "The locale of wikitext output file."
@@ -62,14 +67,18 @@ local function main()
     -- simulate & print
     if args.wikitext then
         local wikitextformatter = require ("spells/formatters/wikitextformatter")
+        local context = {}
         -- columns
         local columns = wikitextformatter.columns.default_columns
         if #args.wikitext > 0 then
             if args.wikitext[1] == "debug" then
-                columns = wikitextformatter.columns.debug_columns
+                context.columns = wikitextformatter.columns.debug_columns
+            elseif args.wikitext[1] == "group" then
+                context.groups = wikitextformatter.groups.default_groups
+            else
+                context.columns = wikitextformatter.columns.default_columns
             end
         end
-        local context = {}
         -- locale
         if args.locale ~= nil then
             -- init translator
@@ -82,7 +91,7 @@ local function main()
             translator:load(path_to_translation_dev)
             context.translator = translator_instance
         end
-        spells.simulate_action(args.path, env, wikitextformatter:new(file, columns, context))
+        spells.simulate_action(args.path, env, wikitextformatter:new(file, context))
     else
         local jsonformatter = require ("spells/formatters/jsonformatter")
         spells.simulate_action(args.path, env, jsonformatter:new(file))
