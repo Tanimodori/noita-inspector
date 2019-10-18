@@ -1,57 +1,47 @@
 translator = {}
 
-function translator:new(path, locale)
+function translator:new(locale)
     
-    if locale == nil then
-        self.locale = "en"
-    else
-        self.locale = string.lower(locale)
-    end
+    self.locale = locale or "en"
+    self.locale = string.lower(self.locale)
 
     local csv = require("csv")
-    local path_to_translation = path .. '\\translations\\common.csv'
-
-    self.f = csv.open(path_to_translation)
     self.indecies = {}
+    -- self.locale_row = nil
 
-    -- index
-    function self:index()
-        for fields in self.f:lines() do
+    function self:load(path)
+        local f = csv.open(path)
+        for fields in f:lines() do
+            self.locale_row = self.locale_row or fields
             self.indecies[ "$" .. fields[1] ] = fields
         end
     end
 
     function self:translate(source, locale) 
-        local current_locale = self.locale
+        local current_locale = locale or self.locale
         local locale_index = -1
-        if locale ~= nil then
-            current_locale = locale
+        local fields = self.locale_row
+        -- search for index of locale
+        for i, v in ipairs(fields) do
+            if v == current_locale then
+                locale_index = i
+                break
+            end
         end
-        for fields in self.f:lines() do
-            if locale_index == -1 then
-                -- first line, search for index of locale
-                for i, v in ipairs(fields) do
-                    if v == current_locale then
-                        locale_index = i
-                        break
-                    end
-                end
-                -- locale not found
-                if locale_index == -1 then
-                    return source
-                end
-            end
-            result = self.indecies[source]
-            if result then
-                return result[locale_index]
-            else
-                -- word not found
-                return source
-            end
-            -- break
+        -- locale not found
+        if locale_index == -1 then
+            print("[WARN] translator: unknown locale '"..current_locale.."'")
+            return source
+        end
+        result = self.indecies[source]
+        if result and result[locale_index] ~= '' then
+            return result[locale_index]
+        else
+            -- word not found
+            print("[WARN] translator: unknown source '"..source.."' at locale '"..current_locale.."'")
+            return source
         end
     end
-    self:index()
     return self
 end
 
