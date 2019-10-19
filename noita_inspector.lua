@@ -88,8 +88,8 @@ local function main()
             local path_to_translation = args.path .. '\\translations\\common.csv'
             local path_to_translation_dev = args.path .. '\\translations\\common_dev.csv'
             local inspector_translations = '.\\i18n\\inspector_translations.csv'
-            translator:load(path_to_translation)
             translator:load(path_to_translation_dev)
+            translator:load(path_to_translation)
             translator:load(inspector_translations)
             context.translator = translator_instance
         end
